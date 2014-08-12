@@ -61,7 +61,8 @@
      fill-column-indicator
      flx-ido
      ido-ubiquitous
-     highlight-symbol)))
+     highlight-symbol
+     expand-region)))
 
 (condition-case nil
     (init--install-packages)
