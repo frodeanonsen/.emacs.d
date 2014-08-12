@@ -96,6 +96,10 @@
   (when (file-regular-p file)
     (load file)))
 
+(require 'expand-region)
+(require 'multiple-cursors)
+(require 'smart-forward)
+
 ;; Fill column indicator
 (require 'fill-column-indicator)
 (setq fci-rule-color "#111122")
