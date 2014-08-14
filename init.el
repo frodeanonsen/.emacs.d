@@ -27,6 +27,9 @@
 (dolist (project (directory-files site-lisp-dir t "\\w+"))
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
+(dolist (project (directory-files (concat site-lisp-dir "/trello") t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
 
 ;; Write backup files to own directory
 (setq backup-directory-alist
