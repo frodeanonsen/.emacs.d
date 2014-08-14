@@ -57,6 +57,7 @@
      ;;dash
      magit
      paredit
+     projectile
      ;;ido-vertical-mode
      clojure-mode
      clj-refactor
@@ -88,6 +89,7 @@
 (eval-after-load 'magit '(require 'setup-magit))
 (require 'setup-hippie)
 (require 'setup-paredit)
+(require 'setup-projectile)
 (require 'highlight-symbol)
 
 ;; Language specific setup files
