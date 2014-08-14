@@ -56,11 +56,9 @@
    '(
      ;;dash
      magit
-     paredit
      projectile
      ;;ido-vertical-mode
      clojure-mode
-     clj-refactor
      cider
      auto-complete
      ac-cider
@@ -68,7 +66,8 @@
      flx-ido
      ido-ubiquitous
      highlight-symbol
-     expand-region)))
+     expand-region
+     smartparens)))
 
 (condition-case nil
     (init--install-packages)
@@ -90,7 +89,7 @@
 (eval-after-load 'dired '(require 'setup-dired))
 (eval-after-load 'magit '(require 'setup-magit))
 (require 'setup-hippie)
-(require 'setup-paredit)
+(require 'setup-smartparens)
 (require 'setup-projectile)
 (require 'setup-auto-complete)
 (require 'highlight-symbol)

@@ -6,16 +6,6 @@
 (defadvice nrepl-load-current-buffer (before save-first activate)
   (save-buffer))
 
-(require 'clj-refactor)
-
-(cljr-add-keybindings-with-modifier "C-s-")
-(define-key clj-refactor-map (kbd "C-x C-r") 'cljr-rename-file)
-
-(add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
-
-(define-key clojure-mode-map (kbd "C->") 'cljr-thread)
-(define-key clojure-mode-map (kbd "C-<") 'cljr-unwind)
-
 (define-key clojure-mode-map (kbd "s-j") 'clj-jump-to-other-file)
 
 (define-key clojure-mode-map (kbd "C-.") 'clj-hippie-expand-no-case-fold)
@@ -38,9 +28,6 @@
 ;; Indent and highlight more commands
 (put-clojure-indent 'match 'defun)
 
-;; Hide nrepl buffers when switching buffers (switch to by prefixing with space)
-;;(setq nrepl-hide-special-buffers t)
-
 ;; Enable error buffer popping also in the REPL:
 (setq cider-repl-popup-stacktraces t)
 
@@ -49,9 +36,6 @@
 
 ;; auto-select the error buffer when it's displayed
 (setq cider-auto-select-error-buffer t)
-
-;; Prevent the auto-display of the REPL buffer in a separate window after connection is established
-;;(setq cider-repl-pop-to-buffer-on-connect nil)
 
 ;; Enable eldoc in Clojure buffers
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
@@ -111,8 +95,7 @@
   (highlight-symbol-mode)
   (set-fill-column 80)
   (fci-mode)
-  (auto-complete-mode)
-  (eldoc-mode))
+  (auto-complete-mode))
 
 (defun frode-clojurescript-mode-hooks ()
   (linum-mode 1)
