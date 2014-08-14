@@ -131,3 +131,9 @@
 
 ;; Set default dir to my git dir
 (setq default-directory "~/git")
+
+;; Setup Lisp mode
+(defun lisp-mode-setup-hooks ()
+  (eldoc-mode))
+
+(add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup-hooks)
