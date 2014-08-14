@@ -19,3 +19,6 @@ site-lisp/adventur-mode
 /var/
 /nrepl-history
 /.mc-lists.el
+/request/
+/org-trello-already-scanning.lock
+/bookmarks
