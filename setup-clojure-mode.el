@@ -110,7 +110,8 @@
   (linum-mode 1)
   (highlight-symbol-mode)
   (set-fill-column 80)
-  (fci-mode))
+  (fci-mode)
+  (auto-complete-mode))
 
 (defun frode-clojurescript-mode-hooks ()
   (linum-mode 1)

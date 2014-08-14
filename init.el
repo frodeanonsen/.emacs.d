@@ -62,6 +62,8 @@
      clojure-mode
      clj-refactor
      cider
+     auto-complete
+     ac-cider
      fill-column-indicator
      flx-ido
      ido-ubiquitous
@@ -90,6 +92,7 @@
 (require 'setup-hippie)
 (require 'setup-paredit)
 (require 'setup-projectile)
+(require 'setup-auto-complete)
 (require 'highlight-symbol)
 
 ;; Language specific setup files

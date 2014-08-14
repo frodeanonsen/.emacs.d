@@ -22,3 +22,4 @@ site-lisp/adventur-mode
 /request/
 /org-trello-already-scanning.lock
 /bookmarks
+/ac-comphist.dat
