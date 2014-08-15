@@ -3,6 +3,11 @@
 (require 'smartparens-config)
 (smartparens-global-mode t)
 
+(defun smart-hooks ()
+  (smartparens-strict-mode))
+
+(add-hook 'smartparens-enabled-hook 'smart-hooks)
+
 ;; highlights matching pairs
 (show-smartparens-global-mode t)
 
