@@ -87,4 +87,9 @@
 (sp-with-modes sp--lisp-modes
   (sp-local-pair "(" nil :bind "C-("))
 
+;; More keybindings
+(define-key sp-keymap (kbd "M-r") 'raise-sexp)
+
+(sp-pair "(" ")" :wrap "M-(")
+
 (provide 'setup-smartparens)
