@@ -89,6 +89,7 @@
 
 ;; More keybindings
 (define-key sp-keymap (kbd "M-r") 'raise-sexp)
+(define-key sp-keymap (kbd "M-q") 'sp-indent-defun)
 
 (sp-pair "(" ")" :wrap "M-(")
 
