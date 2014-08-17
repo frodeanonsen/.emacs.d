@@ -93,14 +93,12 @@
 (defun frode-clojure-mode-hooks ()
   (linum-mode 1)
   (highlight-symbol-mode)
-  (set-fill-column 80)
   (fci-mode)
   (auto-complete-mode))
 
 (defun frode-clojurescript-mode-hooks ()
   (linum-mode 1)
   (highlight-symbol-mode)
-  (set-fill-column 80)
   (fci-mode))
 
 (add-hook 'clojure-mode-hook 'frode-clojure-mode-hooks)
