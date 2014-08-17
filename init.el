@@ -136,3 +136,6 @@
   (eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup-hooks)
+
+;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
+(defalias 'yes-or-no-p 'y-or-n-p)
