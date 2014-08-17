@@ -88,4 +88,8 @@
 ;; Use aspell for spell checking: brew install aspell --lang=en
 (setq ispell-program-name "/usr/local/bin/aspell")
 
+;; sort directories first
+(setq insert-directory-program "/usr/local/bin/gls")
+(setq dired-listing-switches "-aBhl --group-directories-first")
+
 (provide 'mac)
