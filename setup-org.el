@@ -133,7 +133,7 @@
                        (org-tags-match-list-sublevels nil))))
                nil))))
 
-(require 'org-trello)
-(add-hook 'org-mode-hook 'org-trello-mode)
+;;(require 'org-trello)
+;;(add-hook 'org-mode-hook 'org-trello-mode)
 
 (provide 'setup-org)
