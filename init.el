@@ -121,6 +121,9 @@
 ;; Misc
 (when is-mac (require 'mac))
 
+;; Lorem Ipsum generator
+(require 'lorem-ipsum)
+
 ;; Email, baby
 (require 'setup-mu4e)
 (require 'setup-email)
