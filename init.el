@@ -12,22 +12,22 @@
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
 
+(setq 3rd-party-dir
+      (expand-file-name "3rd-party" site-lisp-dir))
+
 ;; Set up load path
-(add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path site-lisp-dir)
+(add-to-list 'load-path 3rd-party-dir)
 
 ;; Keep emacs Custom-settings in separate file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (expand-file-name "custom.el" site-lisp-dir))
 (load custom-file)
 
 ;; Set up appearance early
 (require 'appearance)
 
 ;; Add external projects to load path
-(dolist (project (directory-files site-lisp-dir t "\\w+"))
-  (when (file-directory-p project)
-    (add-to-list 'load-path project)))
-(dolist (project (directory-files (concat site-lisp-dir "/trello") t "\\w+"))
+(dolist (project (directory-files 3rd-party-dir t "\\w+"))
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 

@@ -25,3 +25,5 @@ site-lisp/adventur-mode
 /ac-comphist.dat
 /projectile.cache
 /eshell/
+/ido.last
+/recentf
