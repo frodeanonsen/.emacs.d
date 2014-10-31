@@ -135,7 +135,8 @@
 (eval-after-load "flyspell"
   '(define-key flyspell-mode-map (kbd "C-.") nil))
 
-;; Make sure we use latest git from homebrew
-(setq magit-git-executable "/usr/local/bin/git")
+;; Make sure we use latest git
+(when is-win (setq magit-git-executable "~/../../../../Program Files (x86)/Git/bin/git"))
+(when is-mac (setq magit-git-executable "/usr/local/bin/git"))
 
 (provide 'setup-magit)

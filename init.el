@@ -44,8 +44,9 @@
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
-;; Are we on a mac?
+;; OS detection
 (setq is-mac (equal system-type 'darwin))
+(setq is-win (equal system-type 'windows-nt))
 
 ;; Setup packages
 (require 'setup-package)
@@ -120,6 +121,7 @@
 
 ;; Misc
 (when is-mac (require 'mac))
+(when is-win (require 'win))
 
 ;; Lorem Ipsum generator
 (require 'lorem-ipsum)
