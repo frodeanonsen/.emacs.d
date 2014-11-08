@@ -17,7 +17,7 @@
 ;; Default theme
 (defun use-presentation-theme ()
   (interactive)
-  (disable-theme 'default-black)
+  (disable-theme 'ample-zen)
   (load-theme 'prez)
   (when (boundp 'magnars/presentation-font)
     (set-face-attribute 'default nil :font magnars/presentation-font)))
@@ -25,7 +25,7 @@
 (defun use-default-theme ()
   (interactive)
   (disable-theme 'prez)
-  (load-theme 'default-black)
+  (load-theme 'ample-zen)
   (when (boundp 'magnars/default-font)
     (set-face-attribute 'default nil :font magnars/default-font)))
 
@@ -38,6 +38,10 @@
 (global-set-key (kbd "C-<f9>") 'toggle-presentation-mode)
 
 (use-default-theme)
+
+;; Customize Smartparens pair-match highlight color
+(custom-set-faces
+ '(sp-show-pair-match-face ((t (:background "dark red")))))
 
 ;; Don't defer screen updates when performing operations
 (setq redisplay-dont-pause t)
