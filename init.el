@@ -147,5 +147,8 @@
 
 (add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup-hooks)
 
+;; Rainbow delimiters all the way
+(require 'setup-rainbow-delimiters)
+
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
