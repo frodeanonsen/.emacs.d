@@ -61,6 +61,8 @@
      ;;ido-vertical-mode
      clojure-mode
      web-mode
+     js2-mode
+     js2-refactor
      cider
      auto-complete
      ac-cider
@@ -134,6 +136,9 @@
 
 ;; Web mode
 (require 'setup-web-mode)
+
+;; Js mode
+(require 'setup-js-mode)
 
 ;; Monday ftw
 (set-variable 'calendar-week-start-day 1)
