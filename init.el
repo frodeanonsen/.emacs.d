@@ -131,9 +131,8 @@
 (require 'setup-mu4e)
 (require 'setup-email)
 
-;; Web mode for php
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+;; Web mode
+(require 'setup-web-mode)
 
 ;; Monday ftw
 (set-variable 'calendar-week-start-day 1)
