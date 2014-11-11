@@ -60,6 +60,7 @@
      projectile
      ;;ido-vertical-mode
      clojure-mode
+     web-mode
      cider
      auto-complete
      ac-cider
