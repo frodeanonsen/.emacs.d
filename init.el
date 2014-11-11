@@ -68,7 +68,8 @@
      ido-ubiquitous
      highlight-symbol
      expand-region
-     smartparens)))
+     smartparens
+     rainbow-delimiters)))
 
 (condition-case nil
     (init--install-packages)
