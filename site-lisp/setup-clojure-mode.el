@@ -108,4 +108,49 @@
 ;;  - https://github.com/overtone/emacs-live/blob/master/packs/dev/clojure-pack/config/paredit-conf.el
 
 
+;; Org-mode Babel for Clojure
+(require 'cider)
+(setq org-babel-clojure-backend 'cider)
+(require 'ob-clojure)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((js . t)
+   (clojure . t)
+   (emacs-lisp . t)))
+
+;; Eval w/o confirming
+(setq org-confirm-babel-evaluate nil)
+
+;; Clojure-specific
+;;
+;; org-babel Clojure support is built to work with Swank/SLIME, which is no longer
+;; being developed, having been replaced by nREPL. This code switches out the former
+;; in favor of the latter. Taken from https://github.com/lambdatronic/org-babel-example
+
+;; Patch ob-clojure to work with nrepl
+(declare-function nrepl-send-string-sync "ext:cider" (code &optional ns))
+
+(defun org-babel-execute:clojure (body)
+  (cider-read-and-eval body))
+
+(defun org-babel-execute:clojure (body params)
+  "Execute a block of Clojure code with Babel."
+  (require 'cider)
+  (with-temp-buffer
+    (insert (org-babel-expand-body:clojure body params))
+    ((lambda (result)
+       (let ((result-params (cdr (assoc :result-params params))))
+         (if (or (member "scalar" result-params)
+                 (member "verbatim" result-params))
+             result
+           (condition-case nil (org-babel-script-escape result)
+             (error result)))))
+     (plist-get (nrepl-sync-request:eval
+                 (buffer-substring-no-properties (point-min) (point-max))
+                 (cdr (assoc :package params)))
+                :value)
+     (cider-read-and-eval (org-babel-expand-body:clojure body params)))))
+
+
 (provide 'setup-clojure-mode)
