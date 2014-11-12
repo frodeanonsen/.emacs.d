@@ -120,9 +120,6 @@
 (require 'smex)
 (smex-initialize)
 
-;; Setup key bindings
-(require 'key-bindings)
-
 ;; Misc
 (when is-mac (require 'mac))
 (when is-win (require 'win))
@@ -157,3 +154,6 @@
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Setup key bindings - last, to override stuff
+(require 'key-bindings)

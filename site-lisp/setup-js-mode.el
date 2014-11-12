@@ -3,7 +3,7 @@
 
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-
+(define-key js2-mode-map (kbd "M-j") nil)
 
 ;; js2-refactor
 (js2r-add-keybindings-with-prefix "C-c C-m")
