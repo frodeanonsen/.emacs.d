@@ -20,7 +20,7 @@
 (add-to-list 'load-path 3rd-party-dir)
 
 ;; Keep emacs Custom-settings in separate file
-(setq custom-file (expand-file-name "custom.el" site-lisp-dir))
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
 ;; Set up appearance early
