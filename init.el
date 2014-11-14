@@ -73,7 +73,8 @@
      highlight-symbol
      expand-region
      smartparens
-     rainbow-delimiters)))
+     rainbow-delimiters
+     arduino-mode)))
 
 (condition-case nil
     (init--install-packages)
