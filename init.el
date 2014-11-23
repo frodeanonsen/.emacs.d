@@ -92,14 +92,16 @@
 
 ;; Setup extensions
 (eval-after-load 'ido '(require 'setup-ido))
-(eval-after-load 'org '(require 'setup-org))
 (eval-after-load 'dired '(require 'setup-dired))
 (eval-after-load 'magit '(require 'setup-magit))
-(require 'setup-hippie)
-(require 'setup-smartparens)
-(require 'setup-projectile)
-(require 'setup-auto-complete)
-(require 'highlight-symbol)
+(eval-after-load 'org '(require 'setup-org))
+
+(eval-after-load 'hippie (require 'setup-hippie))
+(eval-after-load 'smart (require 'setup-smartparens))
+(eval-after-load 'protile  (require 'setup-projectile))
+(eval-after-load 'ac (require 'setup-auto-complete))
+(eval-after-load 'hilite (require 'highlight-symbol))
+
 
 ;; Language specific setup files
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
@@ -162,3 +164,4 @@
 
 ;; Setup key bindings - last, to override stuff
 (require 'key-bindings)
+
