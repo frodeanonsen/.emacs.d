@@ -4,6 +4,7 @@
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (define-key js2-mode-map (kbd "M-j") nil)
+(setq-default js2-global-externs '("Buffer" "history" "process" "module" "exports" "require" "jQuery" "$" "_" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON" "describe" "it" "expect" "before" "after"))
 
 ;; js2-refactor
 (js2r-add-keybindings-with-prefix "C-c C-m")
