@@ -1,4 +1,5 @@
 (require 'clojure-mode)
+(require 'clj-refactor)
 
 (defadvice clojure-test-run-tests (before save-first activate)
   (save-buffer))
@@ -89,17 +90,30 @@
 (define-key clojure-mode-map (kbd "C-c C-n") 'nrepl-warn-when-not-connected)
 
 ;; ------------
+;; Refactor keybindings
+;; - `rf`: rename file, update ns-declaration, and then query-replace new ns in project.
+;; - `ar`: add :require to namespace declaration, then jump back
+;; - `au`: add :use to namespace declaration, then jump back
+;; - `ai`: add :import to namespace declaration, then jump back
+;; - `th`: thread another expression
+;; - `uw`: unwind a threaded expression
+
+(defun setup-clj-refactor-mode ()
+  (clj-refactor-mode 1)
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 (defun frode-clojure-mode-hooks ()
   (linum-mode 1)
   (highlight-symbol-mode)
   (fci-mode)
-  (auto-complete-mode))
+  (auto-complete-mode)
+  (setup-clj-refactor-mode))
 
 (defun frode-clojurescript-mode-hooks ()
   (linum-mode 1)
   (highlight-symbol-mode)
-  (fci-mode))
+  (fci-mode)
+  (setup-clj-refactor-mode))
 
 (add-hook 'clojure-mode-hook 'frode-clojure-mode-hooks)
 (add-hook 'clojurescript-mode-hook 'frode-clojurescript-mode-hooks)
