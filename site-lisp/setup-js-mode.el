@@ -39,4 +39,7 @@
 
 ;; C-S-down and C-S-up moves the current line up or down. If the line is an element in an object or array literal, it makes sure that the commas are still correctly placed.
 
+;; 2 spaces for indent
+(setq-default js2-basic-offset 2)
+
 (provide 'setup-js-mode)
