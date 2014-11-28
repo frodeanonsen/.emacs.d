@@ -74,7 +74,8 @@
      expand-region
      smartparens
      rainbow-delimiters
-     arduino-mode)))
+     arduino-mode
+     powerline)))
 
 (condition-case nil
     (init--install-packages)
@@ -101,7 +102,7 @@
 (eval-after-load 'protile  (require 'setup-projectile))
 (eval-after-load 'ac (require 'setup-auto-complete))
 (eval-after-load 'hilite (require 'highlight-symbol))
-
+(eval-after-load 'power (require 'setup-powerline))
 
 ;; Language specific setup files
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
