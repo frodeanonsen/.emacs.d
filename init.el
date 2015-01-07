@@ -58,24 +58,26 @@
      ;;dash
      magit
      projectile
-     ;;ido-vertical-mode
      clojure-mode
      web-mode
      js2-mode
      js2-refactor
+     json-mode     
      omnisharp
      cider
      auto-complete
      ac-cider
      fill-column-indicator
-     flx-ido
-     ido-ubiquitous
+     ;;ido-ubiquitous
+     ;;flx-ido
+     ;;ido-vertical-mode
      highlight-symbol
      expand-region
      smartparens
      rainbow-delimiters
      arduino-mode
-     powerline)))
+     powerline
+     helm)))
 
 (condition-case nil
     (init--install-packages)
@@ -103,6 +105,7 @@
 (eval-after-load 'ac (require 'setup-auto-complete))
 (eval-after-load 'hilite (require 'highlight-symbol))
 (eval-after-load 'power (require 'setup-powerline))
+(eval-after-load 'java (require 'setup-java))
 
 ;; Language specific setup files
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
@@ -116,6 +119,7 @@
 (require 'expand-region)
 (require 'multiple-cursors)
 (require 'smart-forward)
+
 
 ;; Fill column indicator
 (require 'fill-column-indicator)
@@ -163,6 +167,6 @@
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;; Setup key bindings - last, to override stuff
+;; Setup key bindings and helm - last, to override stuff
 (require 'key-bindings)
-
+(eval-after-load 'helm-setup (require 'setup-helm))

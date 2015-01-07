@@ -1,5 +1,7 @@
+(require 'ac-helm)
 (require 'auto-complete-config)
-(ac-config-default)
+
 (setq ac-show-menu-immediately-on-auto-complete t)
+(ac-config-default)
 
 (provide 'setup-auto-complete)

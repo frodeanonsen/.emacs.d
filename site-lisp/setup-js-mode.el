@@ -1,5 +1,7 @@
 (require 'js2-mode)
 (require 'js2-refactor)
+(require 'json-mode)
+(require 'json-reformat)
 
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -41,5 +43,7 @@
 
 ;; 2 spaces for indent
 (setq-default js2-basic-offset 2)
+(setq-default json-reformat:indent-width 2)
+(setq js-indent-level 2)
 
 (provide 'setup-js-mode)
