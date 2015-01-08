@@ -89,15 +89,6 @@
 (define-key clojure-mode-map (kbd "C-c C-k") 'nrepl-warn-when-not-connected)
 (define-key clojure-mode-map (kbd "C-c C-n") 'nrepl-warn-when-not-connected)
 
-;; ------------
-;; Refactor keybindings
-;; - `rf`: rename file, update ns-declaration, and then query-replace new ns in project.
-;; - `ar`: add :require to namespace declaration, then jump back
-;; - `au`: add :use to namespace declaration, then jump back
-;; - `ai`: add :import to namespace declaration, then jump back
-;; - `th`: thread another expression
-;; - `uw`: unwind a threaded expression
-
 (defun setup-clj-refactor-mode ()
   (clj-refactor-mode 1)
   (cljr-add-keybindings-with-prefix "C-c C-m"))
