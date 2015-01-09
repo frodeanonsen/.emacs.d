@@ -16,12 +16,15 @@
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-snippets nil))
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 (setq web-mode-ac-sources-alist
       '(("css" . (ac-source-css-property))
         ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+
+(define-key web-mode-map (kbd "C-c C-s") nil)
 
 (provide 'setup-web-mode)
