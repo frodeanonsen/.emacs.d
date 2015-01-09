@@ -46,4 +46,10 @@
 (setq-default json-reformat:indent-width 2)
 (setq js-indent-level 2)
 
+;; Autocomplete
+(add-hook 'js2-mode-hook 'auto-complete-mode)
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+(setq ac-js2-evaluate-calls t)
+
 (provide 'setup-js-mode)

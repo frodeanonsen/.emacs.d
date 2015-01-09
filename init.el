@@ -62,7 +62,8 @@
      web-mode
      js2-mode
      js2-refactor
-     json-mode     
+     json-mode
+     scss-mode
      omnisharp
      cider
      auto-complete
@@ -77,7 +78,8 @@
      rainbow-delimiters
      arduino-mode
      powerline
-     helm)))
+     helm
+     paradox)))
 
 (condition-case nil
     (init--install-packages)
@@ -106,6 +108,7 @@
 (eval-after-load 'hilite (require 'highlight-symbol))
 (eval-after-load 'power (require 'setup-powerline))
 (eval-after-load 'java (require 'setup-java))
+(eval-after-load 'paradox-packages (require 'setup-paradox))
 
 ;; Language specific setup files
 (eval-after-load 'clojure-mode '(require 'setup-clojure-mode))
@@ -146,8 +149,13 @@
 ;; Js mode
 (require 'setup-js-mode)
 
+;; Sass mode
+(require 'setup-sass-mode)
+
 ;; CSharp mode
 (require 'setup-csharp-mode)
+
+(require 'setup-snippets)
 
 ;; Monday ftw
 (set-variable 'calendar-week-start-day 1)
