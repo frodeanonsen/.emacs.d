@@ -20,4 +20,8 @@
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
+(setq web-mode-ac-sources-alist
+      '(("css" . (ac-source-css-property))
+        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+
 (provide 'setup-web-mode)
