@@ -76,6 +76,9 @@
      arduino-mode
      powerline
      helm
+     helm-swoop
+     ace-jump-mode
+     ace-isearch
      paradox
      flycheck
      flycheck-pos-tip)))
@@ -161,6 +164,10 @@
 (require 'setup-csharp-mode)
 
 (require 'setup-snippets)
+
+(require 'ace-isearch)
+(global-ace-isearch-mode +1)
+
 
 ;; Monday ftw
 (set-variable 'calendar-week-start-day 1)
