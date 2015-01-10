@@ -58,20 +58,17 @@
      ;;dash
      magit
      projectile
+     auto-complete
      clojure-mode
+     cider
+     ac-cider
      web-mode
      js2-mode
      js2-refactor
      json-mode
      scss-mode
      omnisharp
-     cider
-     auto-complete
-     ac-cider
      fill-column-indicator
-     ;;ido-ubiquitous
-     ;;flx-ido
-     ;;ido-vertical-mode
      highlight-symbol
      expand-region
      smartparens
