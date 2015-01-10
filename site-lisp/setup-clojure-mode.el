@@ -89,16 +89,43 @@
 (define-key clojure-mode-map (kbd "C-c C-k") 'nrepl-warn-when-not-connected)
 (define-key clojure-mode-map (kbd "C-c C-n") 'nrepl-warn-when-not-connected)
 
+;; Autocomplete
+(require 'ac-cider)
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete"
+  '(progn
+     (add-to-list 'ac-modes 'cider-mode)
+     (add-to-list 'ac-modes 'cider-repl-mode)))
+
+;; Autocomplete with tab
+(defun set-auto-complete-as-completion-at-point-function ()
+  (setq completion-at-point-functions '(auto-complete)))
+
+(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+(add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
+;; --
+
+;; Flycheck
+(require 'flycheck-clojure)
+(eval-after-load 'flycheck '(flycheck-clojure-setup))
+
+
 (defun setup-clj-refactor-mode ()
   (clj-refactor-mode 1)
   (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(defun frode-cider-mode-hooks ()
+  (flycheck-mode 1))
 
 (defun frode-clojure-mode-hooks ()
   (linum-mode 1)
   (highlight-symbol-mode)
   (fci-mode)
   (auto-complete-mode)
-  (setup-clj-refactor-mode))
+  (setup-clj-refactor-mode)
+  (flycheck-mode 1))
 
 (defun frode-clojurescript-mode-hooks ()
   (linum-mode 1)
@@ -107,6 +134,7 @@
   (setup-clj-refactor-mode))
 
 (add-hook 'clojure-mode-hook 'frode-clojure-mode-hooks)
+(add-hook 'cider-mode-hook 'frode-cider-mode-hooks)
 (add-hook 'clojurescript-mode-hook 'frode-clojurescript-mode-hooks)
 
 ;; TODO: Loot more stuff from:

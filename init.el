@@ -76,7 +76,9 @@
      arduino-mode
      powerline
      helm
-     paradox)))
+     paradox
+     flycheck
+     flycheck-pos-tip)))
 
 (condition-case nil
     (init--install-packages)
@@ -139,6 +141,12 @@
 ;; Email, baby
 (require 'setup-mu4e)
 (require 'setup-email)
+
+;; Flycheck
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+  '(setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
 
 ;; Web mode
 (require 'setup-web-mode)
