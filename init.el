@@ -81,7 +81,8 @@
      ace-isearch
      paradox
      flycheck
-     flycheck-pos-tip)))
+     flycheck-pos-tip
+     flycheck-clojure)))
 
 (condition-case nil
     (init--install-packages)
