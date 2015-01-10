@@ -130,10 +130,6 @@
 (require 'fill-column-indicator)
 (setq fci-rule-color "#111122")
 
-;; Smart M-x is smart
-(require 'smex)
-(smex-initialize)
-
 ;; Misc
 (when is-mac (require 'mac))
 (when is-win (require 'win))
