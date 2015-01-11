@@ -105,9 +105,9 @@
   (exec-path-from-shell-initialize))
 
 ;; Setup extensions
+(require 'setup-magit)
 (eval-after-load 'ido '(require 'setup-ido))
 (eval-after-load 'dired '(require 'setup-dired))
-(eval-after-load 'magit '(require 'setup-magit))
 (eval-after-load 'org '(require 'setup-org))
 (eval-after-load 'hippie (require 'setup-hippie))
 (eval-after-load 'smart (require 'setup-smartparens))

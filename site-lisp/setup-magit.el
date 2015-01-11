@@ -86,47 +86,47 @@
              :bind (("C-c C-k" . magit-exit-commit-mode)))
 
 (use-package magit
-             :bind (("C-c C-a" . magit-just-amend)
-                    ("C-x C-k" . magit-kill-file-on-line)
-                    ("q" . magit-quit-session)
-                    ("W" . magit-toggle-whitespace))
-             :init (progn
-                     ;; Subtler highlight
-                     (set-face-background 'magit-item-highlight "#121212")
-                     (set-face-background 'diff-file-header "#121212")
-                     (set-face-foreground 'diff-context "#666666")
-                     (set-face-foreground 'diff-added "#00cc33")
-                     (set-face-foreground 'diff-removed "#ff0000")
+  :bind (("C-c C-a" . magit-just-amend)
+         ("C-x C-k" . magit-kill-file-on-line)
+         ("q" . magit-quit-session)
+         ("W" . magit-toggle-whitespace))
+  :init (progn
+          ;; Make sure we use latest git
+          (when is-win (setq magit-git-executable "~/../../../../Program Files (x86)/Git/bin/git"))
+          (when is-mac (setq magit-git-executable "/usr/local/bin/git")))
+  :config (progn
+            ;; Load git configurations
+            ;; For instance, to run magit-svn-mode in a project, do:
+            ;;
+            ;;     git config --add magit.extension svn
+            ;;
+            (add-hook 'magit-mode-hook 'magit-load-config-extensions)
 
-                     (set-default 'magit-stage-all-confirm nil)
-                     (set-default 'magit-unstage-all-confirm nil)
+            ;; Subtler highlight
+            (set-face-background 'magit-item-highlight "#121212")
+            (set-face-background 'diff-file-header "#121212")
+            (set-face-foreground 'diff-context "#666666")
+            (set-face-foreground 'diff-added "#00cc33")
+            (set-face-foreground 'diff-removed "#ff0000")
 
-                     ;; Make sure we use latest git
-                     (when is-win (setq magit-git-executable "~/../../../../Program Files (x86)/Git/bin/git"))
-                     (when is-mac (setq magit-git-executable "/usr/local/bin/git")))
-             :config
-             ;; Load git configurations
-             ;; For instance, to run magit-svn-mode in a project, do:
-             ;;
-             ;;     git config --add magit.extension svn
-             ;;
-             (add-hook 'magit-mode-hook 'magit-load-config-extensions))
+            (set-default 'magit-stage-all-confirm nil)
+            (set-default 'magit-unstage-all-confirm nil)))
 
 (use-package ediff
-             :config (progn
-                       (set-face-foreground 'ediff-odd-diff-B "#ffffff")
-                       (set-face-background 'ediff-odd-diff-B "#292521")
-                       (set-face-foreground 'ediff-even-diff-B "#ffffff")
-                       (set-face-background 'ediff-even-diff-B "#292527")
+  :config (progn
+            (set-face-foreground 'ediff-odd-diff-B "#ffffff")
+            (set-face-background 'ediff-odd-diff-B "#292521")
+            (set-face-foreground 'ediff-even-diff-B "#ffffff")
+            (set-face-background 'ediff-even-diff-B "#292527")
 
-                       (set-face-foreground 'ediff-odd-diff-A "#ffffff")
-                       (set-face-background 'ediff-odd-diff-A "#292521")
-                       (set-face-foreground 'ediff-even-diff-A "#ffffff")
-                       (set-face-background 'ediff-even-diff-A "#292527")))
+            (set-face-foreground 'ediff-odd-diff-A "#ffffff")
+            (set-face-background 'ediff-odd-diff-A "#292521")
+            (set-face-foreground 'ediff-even-diff-A "#ffffff")
+            (set-face-background 'ediff-even-diff-A "#292527")))
 
 (use-package git-messenger
-             ;; Show blame for current line
-             :config (global-set-key (kbd "C-x v p") #'git-messenger:popup-message))
+  ;; Show blame for current line
+  :config (global-set-key (kbd "C-x v p") #'git-messenger:popup-message))
 
 
 (provide 'setup-magit)
