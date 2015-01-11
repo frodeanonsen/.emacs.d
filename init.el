@@ -64,6 +64,10 @@
   :config (setq scss-compile-at-save nil))
 (require 'setup-csharp-mode)
 (use-package arduino-mode :ensure t)
+(use-package scad
+  :ensure scad-mode
+  :defer t)
+
 (use-package highlight-symbol :ensure t)
 
 ;; Functions (load all files in defuns-dir)
