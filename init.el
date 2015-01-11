@@ -5,16 +5,6 @@
 ;;;
 ;;; Code:
 
-;; Turn off mouse interface early in startup to avoid momentary display
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-(message "init")
-
-;; No splash screen please ... jeez
-(setq inhibit-startup-message t)
-
 ;; Set path to dependencies
 (defvar site-lisp-dir
   (expand-file-name "site-lisp" user-emacs-directory))
@@ -25,6 +15,8 @@
 ;; Set up load path
 (add-to-list 'load-path site-lisp-dir)
 (add-to-list 'load-path 3rd-party-dir)
+
+(require 'setup-gui)
 
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
