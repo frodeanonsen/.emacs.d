@@ -1,3 +1,10 @@
+;;; package --- My Emacs configuration
+;;;
+;;; Commentary:
+;;; Kick off the Emacs configuration here. Details in included files.
+;;;
+;;; Code:
+
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -9,11 +16,11 @@
 (setq inhibit-startup-message t)
 
 ;; Set path to dependencies
-(setq site-lisp-dir
-      (expand-file-name "site-lisp" user-emacs-directory))
+(defvar site-lisp-dir
+  (expand-file-name "site-lisp" user-emacs-directory))
 
-(setq 3rd-party-dir
-      (expand-file-name "3rd-party" site-lisp-dir))
+(defvar 3rd-party-dir
+  (expand-file-name "3rd-party" site-lisp-dir))
 
 ;; Set up load path
 (add-to-list 'load-path site-lisp-dir)
@@ -187,3 +194,5 @@
 ;; Setup key bindings and helm - last, to override stuff
 (require 'key-bindings)
 (eval-after-load 'helm-setup (require 'setup-helm))
+
+;;; init.el ends here
