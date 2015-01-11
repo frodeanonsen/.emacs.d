@@ -63,7 +63,6 @@
   (packages-install
    '(
      ;;dash
-     magit
      projectile
      auto-complete
      clojure-mode
@@ -110,7 +109,6 @@
 (eval-after-load 'dired '(require 'setup-dired))
 (eval-after-load 'magit '(require 'setup-magit))
 (eval-after-load 'org '(require 'setup-org))
-
 (eval-after-load 'hippie (require 'setup-hippie))
 (eval-after-load 'smart (require 'setup-smartparens))
 (eval-after-load 'protile  (require 'setup-projectile))
