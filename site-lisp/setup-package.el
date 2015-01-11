@@ -1,5 +1,5 @@
 (require 'package)
-(require 'dash)
+;;(require 'dash)
 
 ;; Add melpa to package repos
 ;; (add-to-list 'package-archives

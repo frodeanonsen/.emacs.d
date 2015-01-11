@@ -9,37 +9,34 @@
 (defvar site-lisp-dir
   (expand-file-name "site-lisp" user-emacs-directory))
 
-(defvar 3rd-party-dir
-  (expand-file-name "3rd-party" site-lisp-dir))
+;;(defvar 3rd-party-dir
+;;  (expand-file-name "3rd-party" site-lisp-dir))
 
 ;; Set up load path
 (add-to-list 'load-path site-lisp-dir)
-(add-to-list 'load-path 3rd-party-dir)
+;;(add-to-list 'load-path 3rd-party-dir)
 
 (require 'setup-gui)
 (require 'appearance)
 (require 'setup-emacs)
 
 ;; Add external projects to load path
-(dolist (project (directory-files 3rd-party-dir t "\\w+"))
-  (when (file-directory-p project)
-    (add-to-list 'load-path project)))
-
-
-;; OS detection
-(require 'os-detection)
+;;(dolist (project (directory-files 3rd-party-dir t "\\w+"))
+;;  (when (file-directory-p project)
+;;    (add-to-list 'load-path project)))
 
 ;; Setup packages
 (require 'setup-package)
-
 (require 'use-package)
 (use-package s)
+(use-package dash)
+
+(require 'os-detection)
 
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
    '(
-     ;;;;;;;dash
      auto-complete
      clojure-mode
      cider
@@ -83,9 +80,8 @@
 ;; Setup extensions
 (require 'setup-magit)
 (require 'setup-projectile)
+(require 'setup-ido)
 
-
-(eval-after-load 'ido '(require 'setup-ido))
 (eval-after-load 'dired '(require 'setup-dired))
 (eval-after-load 'org '(require 'setup-org))
 (eval-after-load 'hippie (require 'setup-hippie))
@@ -105,18 +101,7 @@
   (when (file-regular-p file)
     (load file)))
 
-(require 'expand-region)
-(require 'multiple-cursors)
-(require 'smart-forward)
-
-
-;; Fill column indicator
-(require 'fill-column-indicator)
-(setq fci-rule-color "#111122")
-
-;; Misc
-(when is-mac (require 'mac))
-(when is-win (require 'win))
+(require 'setup-editor)
 
 ;; Lorem Ipsum generator
 (require 'lorem-ipsum)

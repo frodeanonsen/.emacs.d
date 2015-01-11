@@ -73,18 +73,12 @@
 ;; (eval-after-load "flyspell"
 ;;   '(define-key flyspell-mode-map (kbd "C-.") nil))
 
-(use-package vc-annotate  
-  :init (progn
-          (bind-key "q" 'vc-annotate-quit vc-annotate-mode-map)
-          (defadvice vc-annotate (around fullscreen activate)
-            (window-configuration-to-register :vc-annotate-fullscreen)
-            ad-do-it
-            (delete-other-windows))))
-
 (use-package git-commit-mode
+  :ensure t
   :config (bind-key "C-c C-k" 'magit-exit-commit-mode git-commit-mode-map))
 
 (use-package magit  
+  :ensure t
   :init (progn
           ;; Make sure we use latest git
           (when is-win (setq magit-git-executable "~/../../../../Program Files (x86)/Git/bin/git"))
@@ -113,7 +107,18 @@
             (set-default 'magit-stage-all-confirm nil)
             (set-default 'magit-unstage-all-confirm nil)))
 
+(eval-after-load "vc-annotate"
+  '(progn
+     (defadvice vc-annotate (around fullscreen activate)
+       (window-configuration-to-register :vc-annotate-fullscreen)
+       ad-do-it
+       (delete-other-windows))
+
+     (define-key vc-annotate-mode-map (kbd "q") 'vc-annotate-quit)
+     (message "vc-annotate loaded")))
+
 (use-package ediff
+  :ensure t
   :config (progn
             (set-face-foreground 'ediff-odd-diff-B "#ffffff")
             (set-face-background 'ediff-odd-diff-B "#292521")
@@ -126,6 +131,7 @@
             (set-face-background 'ediff-even-diff-A "#292527")))
 
 (use-package git-messenger
+  :ensure t
   ;; Show blame for current line
   :config (global-set-key (kbd "C-x v p") #'git-messenger:popup-message))
 

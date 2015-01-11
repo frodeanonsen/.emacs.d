@@ -76,7 +76,7 @@
 (setq-default truncate-lines t)
 
 ;; Keep cursor away from edges when scrolling up/down
-(require 'smooth-scrolling)
+(use-package smooth-scrolling :ensure t )
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)
@@ -92,8 +92,8 @@
 
 ;; Represent undo-history as an actual tree (visualize with C-x u)
 (setq undo-tree-mode-lighter "")
-(require 'undo-tree)
-(global-undo-tree-mode)
+;;(require 'undo-tree)
+;;(global-undo-tree-mode)
 
 ;; Sentences do not need double spaces to end. Period.
 (set-default 'sentence-end-double-space nil)

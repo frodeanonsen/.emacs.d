@@ -7,7 +7,8 @@
 
 (require 'use-package)
 
-(use-package projectile-mode
+(use-package projectile
+  :ensure t
   :idle (projectile-global-mode)
   :init (setq projectile-switch-project-action 'projectile-dired))
 

@@ -1,9 +1,10 @@
-;;; package --- Setup magit
+;;; package --- Setup emacs
 ;;;
 ;;; Commentary:
-;;; Install and configure magit and related packages
+;;; Basic emacs settings
 ;;;
 ;;; Code:
+
 ;; Write backup files to own directory
 (setq backup-directory-alist
       `(("." . ,(expand-file-name
