@@ -62,8 +62,7 @@
 (defun init--install-packages ()
   (packages-install
    '(
-     ;;dash
-     projectile
+     ;;;;;;;dash
      auto-complete
      clojure-mode
      cider
@@ -106,12 +105,14 @@
 
 ;; Setup extensions
 (require 'setup-magit)
+(require 'setup-projectile)
+
+
 (eval-after-load 'ido '(require 'setup-ido))
 (eval-after-load 'dired '(require 'setup-dired))
 (eval-after-load 'org '(require 'setup-org))
 (eval-after-load 'hippie (require 'setup-hippie))
 (eval-after-load 'smart (require 'setup-smartparens))
-(eval-after-load 'protile  (require 'setup-projectile))
 (eval-after-load 'ac (require 'setup-auto-complete))
 (eval-after-load 'hilite (require 'highlight-symbol))
 (eval-after-load 'power (require 'setup-powerline))
