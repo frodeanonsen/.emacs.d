@@ -5,8 +5,6 @@
 ;;;
 ;;; Code:
 
-;; (eval-after-load "git-commit-mode"
-;;   '(define-key git-commit-mode-map (kbd "C-c C-k") 'magit-exit-commit-mode))
 (require 'use-package)
 
 (defun magit-save-and-exit-commit-mode ()
@@ -75,26 +73,29 @@
 ;; (eval-after-load "flyspell"
 ;;   '(define-key flyspell-mode-map (kbd "C-.") nil))
 
-(use-package vc-annotate
-             :bind (("q" . vc-annotate-quit))
-             :init (defadvice vc-annotate (around fullscreen activate)
-                     (window-configuration-to-register :vc-annotate-fullscreen)
-                     ad-do-it
-                     (delete-other-windows)))
+(use-package vc-annotate  
+  :init (progn
+          (bind-key "q" 'vc-annotate-quit vc-annotate-mode-map)
+          (defadvice vc-annotate (around fullscreen activate)
+            (window-configuration-to-register :vc-annotate-fullscreen)
+            ad-do-it
+            (delete-other-windows))))
 
 (use-package git-commit-mode
-             :bind (("C-c C-k" . magit-exit-commit-mode)))
+  :config (bind-key "C-c C-k" 'magit-exit-commit-mode git-commit-mode-map))
 
-(use-package magit
-  :bind (("C-c C-a" . magit-just-amend)
-         ("C-x C-k" . magit-kill-file-on-line)
-         ("q" . magit-quit-session)
-         ("W" . magit-toggle-whitespace))
+(use-package magit  
   :init (progn
           ;; Make sure we use latest git
           (when is-win (setq magit-git-executable "~/../../../../Program Files (x86)/Git/bin/git"))
           (when is-mac (setq magit-git-executable "/usr/local/bin/git")))
   :config (progn
+            ;; Non-global keybindings
+            (bind-key "C-c C-a" 'magit-just-amend magit-status-mode-map)
+            (bind-key "C-x C-k" 'magit-kill-file-on-line magit-status-mode-map)
+            (bind-key "q" 'magit-quit-session magit-status-mode-map)
+            (bind-key "W" 'magit-toggle-whitespace magit-status-mode-map)
+            
             ;; Load git configurations
             ;; For instance, to run magit-svn-mode in a project, do:
             ;;
