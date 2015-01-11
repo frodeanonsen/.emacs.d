@@ -1,0 +1,11 @@
+#contributor: Frode
+#name: use-package
+#key: use-package
+#key: up
+# --
+(use-package $1
+  :ensure t
+  :init (progn
+    $0)
+  :config (progn
+    $2))

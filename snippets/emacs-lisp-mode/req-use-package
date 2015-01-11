@@ -1,0 +1,5 @@
+#contributor: Frode
+#name: require use-package
+#key: rup
+# --
+(require 'use-package)
