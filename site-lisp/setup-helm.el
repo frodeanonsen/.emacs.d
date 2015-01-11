@@ -6,6 +6,9 @@
 ;;; Code:
 (require 'use-package)
 
+(use-package helm-descbinds :ensure t)
+(require 'helm-config)
+
 (use-package helm
   :ensure t
   :bind (("M-x" . helm-M-x)
@@ -20,10 +23,7 @@
             (helm-descbinds-mode 1)
             (helm-mode 1)))
 
-(require 'helm-config)
-
 (use-package helm-projectile :ensure t)
-(use-package helm-descbinds :ensure t)
 (use-package helm-swoop :ensure t)
 
 (provide 'setup-helm)

@@ -1,11 +1,10 @@
-(require 'yasnippet)
-(require 'angular-snippets)
+(require 'use-package)
 
-(yas-global-mode 1)
+(use-package yasnippet
+  :ensure t
+  :init (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  :config (yas-global-mode 1))
 
-(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-
-(eval-after-load "web-mode"
-  '(define-key web-mode-map (kbd "C-c C-d C-d") 'ng-snip-show-docs-at-point))
+(use-package angular-snippets :ensure t)
 
 (provide 'setup-snippets)

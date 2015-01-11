@@ -28,7 +28,8 @@
   :config (progn
             (setq web-mode-markup-indent-offset 2)
             (setq web-mode-snippets nil)
-            (define-key web-mode-map (kbd "C-c C-s") nil)))
+            (define-key web-mode-map (kbd "C-c C-s") nil)
+            (define-key web-mode-map (kbd "C-c C-d C-d") 'ng-snip-show-docs-at-point)))
 
 (provide 'setup-web-mode)
 ;;; setup-web-mode.el ends here

@@ -76,6 +76,7 @@
           ad-do-it))))
 
 (use-package ido-ubiquitous
+  :ensure t
   :config (progn
             (ido-ubiquitous-mode 1)
             (ido-ubiquitous-use-new-completing-read webjump 'webjump)
