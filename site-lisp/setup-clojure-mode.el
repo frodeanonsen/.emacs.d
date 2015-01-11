@@ -1,15 +1,31 @@
-(require 'clojure-mode)
-(require 'clj-refactor)
+;;; package --- setup-clojure
+;;;
+;;; Commentary:
+;;; Kick off the Emacs configuration here. Details in included files.
+;;;
+;;; Code:
+(require 'use-package)
 
-(defadvice clojure-test-run-tests (before save-first activate)
-  (save-buffer))
+(defun setup-clj-refactor-mode ()
+  (clj-refactor-mode 1)
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
 
-(defadvice nrepl-load-current-buffer (before save-first activate)
-  (save-buffer))
+(defun frode-cider-mode-hooks ()
+  (flycheck-mode 1))
 
-(define-key clojure-mode-map (kbd "s-j") 'clj-jump-to-other-file)
+(defun frode-clojure-mode-hooks ()
+  (linum-mode 1)
+  (highlight-symbol-mode)
+  (fci-mode)
+  (auto-complete-mode)
+  (setup-clj-refactor-mode)
+  (flycheck-mode 1))
 
-(define-key clojure-mode-map (kbd "C-.") 'clj-hippie-expand-no-case-fold)
+(defun frode-clojurescript-mode-hooks ()
+  (linum-mode 1)
+  (highlight-symbol-mode)
+  (fci-mode)
+  (setup-clj-refactor-mode))
 
 (defun clj-hippie-expand-no-case-fold ()
   (interactive)
@@ -18,31 +34,7 @@
     (hippie-expand-no-case-fold)
     (modify-syntax-entry ?/ old-syntax)))
 
-(require 'cider)
-
-(define-key cider-repl-mode-map (kbd "<home>") nil)
-(define-key cider-repl-mode-map (kbd "C-,") 'complete-symbol)
-(define-key cider-mode-map (kbd "C-,") 'complete-symbol)
-(define-key cider-mode-map (kbd "C-c C-q") 'nrepl-close)
-(define-key cider-mode-map (kbd "C-c C-Q") 'cider-quit)
-
-;; Indent and highlight more commands
-(put-clojure-indent 'match 'defun)
-
-;; Enable error buffer popping also in the REPL:
-(setq cider-repl-popup-stacktraces t)
-
-;; Specify history file
-(setq cider-history-file "~/.emacs.d/nrepl-history")
-
-;; auto-select the error buffer when it's displayed
-(setq cider-auto-select-error-buffer t)
-
-;; Enable eldoc in Clojure buffers
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
 ;; Cycle between () {} []
-
 (defun live-delete-and-extract-sexp ()
   "Delete the sexp and return it."
   (interactive)
@@ -72,73 +64,90 @@
       (message "beginning of file reached, this was probably a mistake.")))
     (goto-char original-point)))
 
-(define-key clojure-mode-map (kbd "C-´") 'live-cycle-clj-coll)
-
 ;; Warn about missing nREPL instead of doing stupid things
-
 (defun nrepl-warn-when-not-connected ()
   (interactive)
   (message "Oops! You're not connected to an nREPL server. Please run M-x cider or M-x cider-jack-in to connect."))
 
-(define-key clojure-mode-map (kbd "C-M-x")   'nrepl-warn-when-not-connected)
-(define-key clojure-mode-map (kbd "C-x C-e") 'nrepl-warn-when-not-connected)
-(define-key clojure-mode-map (kbd "C-c C-e") 'nrepl-warn-when-not-connected)
-(define-key clojure-mode-map (kbd "C-c C-l") 'nrepl-warn-when-not-connected)
-(define-key clojure-mode-map (kbd "C-c C-r") 'nrepl-warn-when-not-connected)
-(define-key clojure-mode-map (kbd "C-c C-z") 'nrepl-warn-when-not-connected)
-(define-key clojure-mode-map (kbd "C-c C-k") 'nrepl-warn-when-not-connected)
-(define-key clojure-mode-map (kbd "C-c C-n") 'nrepl-warn-when-not-connected)
+(use-package clojure-mode
+  :ensure t
+  :init (progn
+          (defadvice clojure-test-run-tests (before save-first activate)
+            (save-buffer))
 
-;; Autocomplete
-(require 'ac-cider)
-(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-(add-hook 'cider-mode-hook 'ac-cider-setup)
-(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
-(eval-after-load "auto-complete"
-  '(progn
-     (add-to-list 'ac-modes 'cider-mode)
-     (add-to-list 'ac-modes 'cider-repl-mode)))
+          (defadvice nrepl-load-current-buffer (before save-first activate)
+            (save-buffer))
+
+          (add-hook 'clojure-mode-hook 'frode-clojure-mode-hooks)
+          (add-hook 'clojurescript-mode-hook 'frode-clojurescript-mode-hooks))
+  :config (progn
+            (define-key clojure-mode-map (kbd "s-j") 'clj-jump-to-other-file)
+            (define-key clojure-mode-map (kbd "C-.") 'clj-hippie-expand-no-case-fold)
+
+            ;; Indent and highlight more commands
+            (put-clojure-indent 'match 'defun)
+
+            (define-key clojure-mode-map (kbd "C-´") 'live-cycle-clj-coll)
+            (define-key clojure-mode-map (kbd "C-M-x")   'nrepl-warn-when-not-connected)
+            (define-key clojure-mode-map (kbd "C-x C-e") 'nrepl-warn-when-not-connected)
+            (define-key clojure-mode-map (kbd "C-c C-e") 'nrepl-warn-when-not-connected)
+            (define-key clojure-mode-map (kbd "C-c C-l") 'nrepl-warn-when-not-connected)
+            (define-key clojure-mode-map (kbd "C-c C-r") 'nrepl-warn-when-not-connected)
+            (define-key clojure-mode-map (kbd "C-c C-z") 'nrepl-warn-when-not-connected)
+            (define-key clojure-mode-map (kbd "C-c C-k") 'nrepl-warn-when-not-connected)
+            (define-key clojure-mode-map (kbd "C-c C-n") 'nrepl-warn-when-not-connected)))
+
+(use-package clj-refactor
+  :ensure t)
+
+(use-package cider
+  :ensure t
+  :init (progn
+          (add-hook 'cider-mode-hook 'frode-cider-mode-hooks)
+
+          ;; Enable eldoc in Clojure buffers
+          (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode))
+  :config (progn
+            (define-key cider-repl-mode-map (kbd "<home>") nil)
+            (define-key cider-repl-mode-map (kbd "C-,") 'complete-symbol)
+            (define-key cider-mode-map (kbd "C-,") 'complete-symbol)
+            (define-key cider-mode-map (kbd "C-c C-q") 'nrepl-close)
+            (define-key cider-mode-map (kbd "C-c C-Q") 'cider-quit)
+
+            ;; Enable error buffer popping also in the REPL:
+            (setq cider-repl-popup-stacktraces t)
+
+            ;; Specify history file
+            (setq cider-history-file "~/.emacs.d/nrepl-history")
+
+            ;; auto-select the error buffer when it's displayed
+            (setq cider-auto-select-error-buffer t)))
 
 ;; Autocomplete with tab
 (defun set-auto-complete-as-completion-at-point-function ()
   (setq completion-at-point-functions '(auto-complete)))
 
-(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
-(add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
-;; --
+;; Autocomplete
+(use-package ac-cider
+  :ensure t
+  :init (progn
+          (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+          (add-hook 'cider-mode-hook 'ac-cider-setup)
+          (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+          (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+          (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function))
+  :config (progn
+            (add-to-list 'ac-modes 'cider-mode)
+            (add-to-list 'ac-modes 'cider-repl-mode)))
 
 ;; Flycheck
-(require 'flycheck-clojure)
-(eval-after-load 'flycheck '(flycheck-clojure-setup))
-
-
-(defun setup-clj-refactor-mode ()
-  (clj-refactor-mode 1)
-  (cljr-add-keybindings-with-prefix "C-c C-m"))
-
-(defun frode-cider-mode-hooks ()
-  (flycheck-mode 1))
-
-(defun frode-clojure-mode-hooks ()
-  (linum-mode 1)
-  (highlight-symbol-mode)
-  (fci-mode)
-  (auto-complete-mode)
-  (setup-clj-refactor-mode)
-  (flycheck-mode 1))
-
-(defun frode-clojurescript-mode-hooks ()
-  (linum-mode 1)
-  (highlight-symbol-mode)
-  (fci-mode)
-  (setup-clj-refactor-mode))
-
-(add-hook 'clojure-mode-hook 'frode-clojure-mode-hooks)
-(add-hook 'cider-mode-hook 'frode-cider-mode-hooks)
-(add-hook 'clojurescript-mode-hook 'frode-clojurescript-mode-hooks)
+(use-package flycheck-clojure
+  :ensure t
+  :config (flycheck-clojure-setup))
 
 ;; TODO: Loot more stuff from:
 ;;  - https://github.com/overtone/emacs-live/blob/master/packs/dev/clojure-pack/config/paredit-conf.el
 
 
 (provide 'setup-clojure-mode)
+;;; setup-clojure-mode.el ends here

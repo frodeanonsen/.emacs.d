@@ -4,7 +4,6 @@
 ;;; Set up themes
 ;;;
 ;;; Code:
-
 (setq visible-bell t
       font-lock-maximum-decoration t
       color-theme-is-global t
@@ -71,9 +70,6 @@
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
   (tooltip-mode -1)
   (blink-cursor-mode -1))
-
-;; Make zooming affect frame instead of buffers
-(use-package zoom-frm :ensure t)
 
 (provide 'appearance)
 ;;; appearance.el ends here

@@ -1,15 +1,33 @@
-(require 'js2-mode)
-(require 'js2-refactor)
-(require 'json-mode)
-(require 'json-reformat)
+;;; package --- js-mode
+;;;
+;;; Commentary:
+;;; All javascript related stuff
+;;;
+;;; Code:
+(require 'use-package)
 
-;; js2-mode
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(define-key js2-mode-map (kbd "M-j") nil)
-(setq-default js2-global-externs '("Buffer" "history" "process" "module" "exports" "require" "jQuery" "$" "_" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON" "describe" "it" "expect" "before" "after"))
+(use-package js2-mode  
+  :ensure t
+  :diminish "JS"
+  :init (progn
+          (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+          ;; Autocomplete
+          (add-hook 'js2-mode-hook 'auto-complete-mode)
+          (add-hook 'js2-mode-hook 'skewer-mode)
+          (add-hook 'js2-mode-hook 'ac-js2-mode)
+          (setq ac-js2-evaluate-calls t))
+  :config (progn
+            (define-key js2-mode-map (kbd "M-j") nil)
+            (setq-default js2-global-externs '("Buffer" "history" "process" "module" "exports" "require" "jQuery" "$" "_" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON" "describe" "it" "expect" "before" "after"))
 
-;; js2-refactor
-(js2r-add-keybindings-with-prefix "C-c C-m")
+            ;; 2 spaces for indent
+            (setq-default js2-basic-offset 2)
+            (setq-default json-reformat:indent-width 2)
+            (setq js-indent-level 2)))
+
+(use-package js2-refactor
+  :ensure t
+  :config (js2r-add-keybindings-with-prefix "C-c C-m"))
 
 ;; ef is extract-function: Extracts the marked expressions out into a new named function.
 ;; em is extract-method: Extracts the marked expressions out into a new named method in an object literal.
@@ -41,15 +59,9 @@
 
 ;; C-S-down and C-S-up moves the current line up or down. If the line is an element in an object or array literal, it makes sure that the commas are still correctly placed.
 
-;; 2 spaces for indent
-(setq-default js2-basic-offset 2)
-(setq-default json-reformat:indent-width 2)
-(setq js-indent-level 2)
+(use-package json-mode :ensure t)
+(use-package json-reformat :ensure t)
 
-;; Autocomplete
-(add-hook 'js2-mode-hook 'auto-complete-mode)
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-(setq ac-js2-evaluate-calls t)
 
 (provide 'setup-js-mode)
+;;; setup-js-mode.el ends here

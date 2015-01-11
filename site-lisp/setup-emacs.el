@@ -22,5 +22,20 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+;; Monday ftw
+(set-variable 'calendar-week-start-day 1)
+
+;; Set default dir to my git dir
+(setq default-directory "~/git")
+
+;; Setup Lisp mode
+(defun lisp-mode-setup-hooks ()
+  (eldoc-mode))
+
+(add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup-hooks)
+
+;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (provide 'setup-emacs)
 ;;; setup-emacs.el ends here

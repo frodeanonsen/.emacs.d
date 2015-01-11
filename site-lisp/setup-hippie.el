@@ -1,3 +1,11 @@
+;;; package --- Hippie expand
+;;;
+;;; Commentary:
+;;; Expand config
+;;;
+;;; Code:
+(require 'use-package)
+
 (defvar he-search-loc-backward (make-marker))
 (defvar he-search-loc-forward (make-marker))
 
@@ -144,14 +152,6 @@ string).  It returns t if a new completion is found, nil otherwise."
         (he-substitute-string expansion t)
         t))))
 
-;; Hippie expand: sometimes too hip
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev-closest-first
-                                         try-complete-file-name
-                                         try-expand-dabbrev-all-buffers
-                                         try-expand-dabbrev-from-kill
-                                         try-expand-all-abbrevs
-                                         try-complete-lisp-symbol-partially
-                                         try-complete-lisp-symbol))
 
 ;; Create own function to expand lines (C-S-.)
 (defun hippie-expand-lines ()
@@ -167,4 +167,12 @@ string).  It returns t if a new completion is found, nil otherwise."
   (let ((case-fold-search nil))
     (hippie-expand nil)))
 
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev-closest-first
+                                         try-complete-file-name
+                                         try-expand-dabbrev-all-buffers
+                                         try-expand-dabbrev-from-kill
+                                         try-expand-all-abbrevs
+                                         try-complete-lisp-symbol-partially
+                                         try-complete-lisp-symbol))
 (provide 'setup-hippie)
+;;; setup-hippie.el ends here
