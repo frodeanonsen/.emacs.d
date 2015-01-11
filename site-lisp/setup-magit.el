@@ -131,3 +131,4 @@
 
 
 (provide 'setup-magit)
+;;; setup-magit.el ends here

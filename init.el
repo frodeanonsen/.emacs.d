@@ -17,38 +17,23 @@
 (add-to-list 'load-path 3rd-party-dir)
 
 (require 'setup-gui)
-
-;; Keep emacs Custom-settings in separate file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
-
-;; Set up appearance early
 (require 'appearance)
+(require 'setup-emacs)
 
 ;; Add external projects to load path
 (dolist (project (directory-files 3rd-party-dir t "\\w+"))
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-;; Write backup files to own directory
-(setq backup-directory-alist
-      `(("." . ,(expand-file-name
-                 (concat user-emacs-directory "backups")))))
-
-;; Make backups of files, even when they're in version control
-(setq vc-make-backup-files t)
-
-;; Save point position between sessions
-(require 'saveplace)
-(setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" user-emacs-directory))
 
 ;; OS detection
-(setq is-mac (equal system-type 'darwin))
-(setq is-win (equal system-type 'windows-nt))
+(require 'os-detection)
 
 ;; Setup packages
 (require 'setup-package)
+
+(require 'use-package)
+(use-package s)
 
 ;; Install extensions if they're missing
 (defun init--install-packages ()
@@ -135,10 +120,6 @@
 
 ;; Lorem Ipsum generator
 (require 'lorem-ipsum)
-
-;; Email, baby
-(require 'setup-mu4e)
-(require 'setup-email)
 
 ;; Flycheck
 (require 'flycheck)

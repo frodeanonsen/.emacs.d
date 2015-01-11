@@ -1,3 +1,10 @@
+;;; package --- appearance
+;;;
+;;; Commentary:
+;;; Set up themes
+;;;
+;;; Code:
+
 (setq visible-bell t
       font-lock-maximum-decoration t
       color-theme-is-global t
@@ -18,14 +25,14 @@
 (defun use-presentation-theme ()
   (interactive)
   (disable-theme 'ample-zen)
-  (load-theme 'prez)
+  (load-theme 'prez t)
   (when (boundp 'magnars/presentation-font)
     (set-face-attribute 'default nil :font magnars/presentation-font)))
 
 (defun use-default-theme ()
   (interactive)
   (disable-theme 'prez)
-  (load-theme 'ample-zen)
+  (load-theme 'ample-zen t)
   (when (boundp 'magnars/default-font)
     (set-face-attribute 'default nil :font magnars/default-font)))
 
@@ -90,3 +97,4 @@
 (rename-modeline "clojure-mode" clojure-mode "Clj")
 
 (provide 'appearance)
+;;; appearance.el ends here
