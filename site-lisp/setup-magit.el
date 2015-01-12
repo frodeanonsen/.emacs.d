@@ -1,4 +1,4 @@
-;;; package --- Setup magit
+;;; setup-magit.el --- Setup magit
 ;;;
 ;;; Commentary:
 ;;; Install and configure magit and related packages
@@ -135,6 +135,7 @@
   ;; Show blame for current line
   :config (global-set-key (kbd "C-x v p") #'git-messenger:popup-message))
 
+(use-package git-timemachine :ensure t)
 
 (provide 'setup-magit)
 ;;; setup-magit.el ends here
