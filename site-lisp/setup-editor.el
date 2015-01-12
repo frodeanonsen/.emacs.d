@@ -54,6 +54,7 @@
   :ensure t
   :config (setq fci-rule-color "#111122"))
 
+(use-package editorconfig :ensure t)
 
 (provide 'setup-editor)
 ;;; setup-editor.el ends here

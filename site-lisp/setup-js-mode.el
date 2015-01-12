@@ -61,7 +61,7 @@
 
 (use-package json-mode :ensure t)
 (use-package json-reformat :ensure t)
-
+(use-package skewer-mode :ensure t)
 
 (provide 'setup-js-mode)
 ;;; setup-js-mode.el ends here

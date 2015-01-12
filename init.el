@@ -67,8 +67,10 @@
 (use-package scad
   :ensure scad-mode
   :defer t)
-
+(use-package yaml-mode :ensure t)
 (use-package highlight-symbol :ensure t)
+(use-package visual-regexp :ensure t)
+(use-package dockerfile-mode :ensure t)
 
 ;; Functions (load all files in defuns-dir)
 (setq defuns-dir (expand-file-name "defuns" user-emacs-directory))

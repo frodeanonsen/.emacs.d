@@ -32,6 +32,7 @@
   (interactive)
   (disable-theme 'prez)
   (load-theme 'ample-zen t)
+  (load-theme 'org-beautify t)
   (when (boundp 'magnars/default-font)
     (set-face-attribute 'default nil :font magnars/default-font)))
 

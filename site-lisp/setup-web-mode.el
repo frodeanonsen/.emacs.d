@@ -31,5 +31,14 @@
             (define-key web-mode-map (kbd "C-c C-s") nil)
             (define-key web-mode-map (kbd "C-c C-d C-d") 'ng-snip-show-docs-at-point)))
 
+(use-package zencoding-mode
+  :ensure t
+  :init (progn
+          (add-hook 'sgml-mode-hook 'zencoding-mode)
+          (add-hook 'web-mode-hook 'zencoding-mode))
+  :config (progn
+            (define-key zencoding-mode-keymap (kbd "C-j") 'zencoding-expand-line)
+            (define-key zencoding-mode-keymap (kbd "<C-return>") nil)))
+
 (provide 'setup-web-mode)
 ;;; setup-web-mode.el ends here
