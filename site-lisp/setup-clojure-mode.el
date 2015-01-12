@@ -1,4 +1,4 @@
-;;; package --- setup-clojure
+;;; setup-clojure-mode.el --- setup-clojure
 ;;;
 ;;; Commentary:
 ;;; Kick off the Emacs configuration here. Details in included files.
@@ -145,9 +145,7 @@
   :ensure t
   :config (flycheck-clojure-setup))
 
-;; TODO: Loot more stuff from:
-;;  - https://github.com/overtone/emacs-live/blob/master/packs/dev/clojure-pack/config/paredit-conf.el
-
+(use-package clojure-mode-extra-font-locking :ensure t)
 
 (provide 'setup-clojure-mode)
 ;;; setup-clojure-mode.el ends here
