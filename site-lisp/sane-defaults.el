@@ -1,3 +1,11 @@
+;;; sane-defaults --- Set up some good Emacs defaults
+;;;
+;;; Commentary:
+;;; Good defaults
+;;;
+;;; Code:
+(require 'use-package)
+
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)
 
@@ -92,8 +100,11 @@
 
 ;; Represent undo-history as an actual tree (visualize with C-x u)
 (setq undo-tree-mode-lighter "")
-;;(require 'undo-tree)
-;;(global-undo-tree-mode)
+(use-package undo-tree
+  :ensure t
+  :config (progn
+            (global-undo-tree-mode)
+            (define-key undo-tree-map (kbd "C-?") nil)))
 
 ;; Sentences do not need double spaces to end. Period.
 (set-default 'sentence-end-double-space nil)
@@ -126,3 +137,4 @@
       (when (= p (point)) ad-do-it))))
 
 (provide 'sane-defaults)
+;;; sane-defaults.el ends here

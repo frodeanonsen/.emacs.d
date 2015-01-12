@@ -1,3 +1,10 @@
+;;; key-bindings --- Global key bindings
+;;;
+;;; Commentary:
+;;; Some general keybindings
+;;;
+;;; Code:
+
 ;; I don't need to kill emacs that easily
 ;; the mnemonic is C-x REALLY QUIT
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
@@ -231,7 +238,6 @@
 ;; Increase number at point (or other change based on prefix arg)
 (global-set-key (kbd "C-+") 'change-number-at-point)
 (global-set-key (kbd "C-?") 'subtract-number-at-point)
-(eval-after-load 'undo-tree '(define-key undo-tree-map (kbd "C-?") nil))
 
 ;; Browse the kill ring
 (global-set-key (kbd "C-x C-y") 'browse-kill-ring)
@@ -275,3 +281,4 @@
 (global-set-key (kbd "<next>") 'scroll-up)
 
 (provide 'key-bindings)
+;;; key-bindings.el ends here
