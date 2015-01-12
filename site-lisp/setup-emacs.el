@@ -35,5 +35,9 @@
 
 (add-hook 'emacs-lisp-mode-hook 'lisp-mode-setup-hooks)
 
+(setq initial-scratch-message nil)
+
+(setq initial-buffer-choice default-directory)
+
 (provide 'setup-emacs)
 ;;; setup-emacs.el ends here
