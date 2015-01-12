@@ -1,4 +1,4 @@
-;;; package --- appearance
+;;; appearance.el --- appearance
 ;;;
 ;;; Commentary:
 ;;; Set up themes
@@ -20,25 +20,33 @@
   (when (file-directory-p path)
     (add-to-list 'custom-theme-load-path path)))
 
+;; mac friendly font
+(when window-system
+  (setq frode/default-font "-apple-Monaco-medium-normal-normal-*-16-*-*-*-m-0-iso10646-1")
+  (setq frode/presentation-font "-apple-Monaco-medium-normal-normal-*-21-*-*-*-m-0-iso10646-1")
+  (set-face-attribute 'default nil :font frode/default-font))
+
 ;; Default theme
 (defun use-presentation-theme ()
+  (setq current-theme "prez")
   (interactive)
   (disable-theme 'ample-zen)
   (load-theme 'prez t)
   (when (boundp 'magnars/presentation-font)
-    (set-face-attribute 'default nil :font magnars/presentation-font)))
+    (set-face-attribute 'default nil :font frode/presentation-font)))
 
 (defun use-default-theme ()
+  (setq current-theme "default")
   (interactive)
   (disable-theme 'prez)
   (load-theme 'ample-zen t)
   (load-theme 'org-beautify t)
-  (when (boundp 'magnars/default-font)
-    (set-face-attribute 'default nil :font magnars/default-font)))
+  (when (boundp 'frode/default-font)
+    (set-face-attribute 'default nil :font frode/default-font)))
 
 (defun toggle-presentation-mode ()
   (interactive)
-  (if (string= (frame-parameter nil 'font) magnars/default-font)
+  (if (string= current-theme "default")
       (use-presentation-theme)
     (use-default-theme)))
 
