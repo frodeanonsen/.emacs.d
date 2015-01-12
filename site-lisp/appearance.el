@@ -1,9 +1,10 @@
 ;;; appearance.el --- appearance
 ;;;
 ;;; Commentary:
-;;; Set up themes
+;;; Set up themes. Runs BEFORE package-setup.el, so cannot use-packacge
 ;;;
 ;;; Code:
+
 (setq visible-bell t
       font-lock-maximum-decoration t
       color-theme-is-global t
