@@ -1,4 +1,4 @@
-;;; package --- My Emacs configuration
+;;; init --- My Emacs configuration
 ;;;
 ;;; Commentary:
 ;;; Kick off the Emacs configuration here. Details in included files.

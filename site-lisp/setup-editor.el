@@ -58,8 +58,8 @@
           (setq fci-rule-width 2)
           (setq fci-rule-column 80)
           (setq fci-rule-color "gray21")
-          (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-          (global-fci-mode 1)))
+          (define-globalized-minor-mode global-fci-mode fci-mode
+            (lambda () (fci-mode 1)))))
 
 (provide 'setup-editor)
 ;;; setup-editor.el ends here
