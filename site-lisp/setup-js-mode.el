@@ -6,6 +6,11 @@
 ;;; Code:
 (require 'use-package)
 
+(use-package tern :ensure t)
+(use-package tern-auto-complete
+  :ensure t
+  :init (tern-ac-setup))
+
 (use-package js2-mode  
   :ensure t
   :diminish "JS"
@@ -15,6 +20,7 @@
           (add-hook 'js2-mode-hook 'auto-complete-mode)
           (add-hook 'js2-mode-hook 'skewer-mode)
           (add-hook 'js2-mode-hook 'ac-js2-mode)
+          (add-hook 'js2-mode-hook 'tern-mode)
           (setq ac-js2-evaluate-calls t))
   :config (progn
             (define-key js2-mode-map (kbd "M-j") nil)
