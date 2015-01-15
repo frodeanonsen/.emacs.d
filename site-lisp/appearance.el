@@ -41,7 +41,7 @@
   (interactive)
   (disable-theme 'prez)
   (load-theme 'ample-zen t)
-  (load-theme 'org-beautify t)
+  ;;(load-theme 'org-beautify t)
   (when (boundp 'frode/default-font)
     (set-face-attribute 'default nil :font frode/default-font)))
 
