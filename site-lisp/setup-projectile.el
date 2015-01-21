@@ -10,6 +10,8 @@
 (use-package projectile
   :ensure t
   :idle (projectile-global-mode)
-  :init (setq projectile-switch-project-action 'projectile-dired))
+  :init (progn
+          (setq projectile-switch-project-action 'projectile-dired)
+          (setq projectile-mode-line '(:eval (format " P[%s]" (projectile-project-name))))))
 
 (provide 'setup-projectile)

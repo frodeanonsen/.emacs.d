@@ -21,6 +21,7 @@
           (add-hook 'js2-mode-hook 'skewer-mode)
           (add-hook 'js2-mode-hook 'ac-js2-mode)
           (add-hook 'js2-mode-hook 'tern-mode)
+          (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
           (setq ac-js2-evaluate-calls t))
   :config (progn
             (define-key js2-mode-map (kbd "M-j") nil)
