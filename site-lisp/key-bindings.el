@@ -270,6 +270,10 @@
 (define-key global-map (kbd "M-s +") 'zoom-in)
 (define-key global-map (kbd "M-s -") 'zoom-out)
 
+;; Frames
+(define-key global-map (kbd "M-S-<right>") 'other-frame)
+(define-key global-map (kbd "M-S-<left>") 'other-frame)
+
 ;; Highlight symbols, navigate, replace
 (global-set-key [(control f3)] 'highlight-symbol-at-point)
 (global-set-key [f3] 'highlight-symbol-next)
