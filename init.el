@@ -61,7 +61,9 @@
 (require 'setup-js-mode)
 (use-package scss-mode
   :ensure t
-  :config (setq scss-compile-at-save nil))
+  :config (progn
+            (setq scss-compile-at-save nil)
+            (setq css-indent-offset 2)))
 (require 'setup-csharp-mode)
 (use-package arduino-mode :ensure t)
 (use-package scad
