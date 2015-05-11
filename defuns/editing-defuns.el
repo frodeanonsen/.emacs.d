@@ -319,3 +319,11 @@ region-end is used."
   (while (not (looking-at "}"))
     (join-line -1))
   (back-to-indentation))
+
+(defun kill-and-join-line ()
+  "Kill and join the line."
+  (interactive)
+  (kill-line)
+  (delete-indentation)
+  (beginning-of-line)
+  (forward-line))
