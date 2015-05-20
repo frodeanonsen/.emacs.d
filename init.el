@@ -63,7 +63,9 @@
   :ensure t
   :config (progn
             (setq scss-compile-at-save nil)
-            (setq css-indent-offset 2)))
+            (setq css-indent-offset 2)
+            ;;(define-key scss-mode-map (kbd "C-c C-i") 'indent-buffer)
+            ))
 (require 'setup-csharp-mode)
 (use-package arduino-mode :ensure t)
 (use-package scad
@@ -102,3 +104,4 @@
 (require 'setup-helm)
 
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)
