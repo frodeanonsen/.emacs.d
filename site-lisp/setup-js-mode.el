@@ -11,9 +11,39 @@
   :ensure t
   :init (tern-ac-setup))
 
+;; (use-package js3-mode
+;;   :ensure t
+;;   :interpreter "node"
+;;   :init (progn
+;;           (add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))
+;;           ;; Autocomplete
+;;           (add-hook 'js3-mode-hook 'auto-complete-mode)
+;;           (add-hook 'js3-mode-hook 'skewer-mode)
+;;           ;;(add-hook 'js3-mode-hook 'ac-js2-mode)
+;;           (add-hook 'js3-mode-hook 'tern-mode)
+;;           (add-hook 'js3-mode-hook (lambda () (setq mode-name "J3")))
+;;           ;;(setq ac-js2-evaluate-calls t)
+;;           (setq js3-indent-level          2
+;;                 js3-mode-dev-mode-p       t
+;;                 js3-auto-indent-p         t
+;;                 js3-enter-indents-newline t
+;;                 js3-indent-on-enter-key   t
+;;                 js3-indent-dots           t
+;;                 js3-lazy-dots             t
+;;                 js3-boring-indentation    t)
+;;           )
+;;   :config (progn
+;;             (define-key js3-mode-map (kbd "M-j") nil)
+;;             (setq-default js3-global-externs '("Buffer" "history" "process" "module" "exports" "require" "jQuery" "$" "_" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON" "describe" "it" "expect" "before" "after"))
+
+;;             ;; 2 spaces for indent
+;;             (setq-default js3-basic-offset 2)
+;;             (setq-default json-reformat:indent-width 2)
+;;             (setq js-indent-level 2)))
+
 (use-package js2-mode  
   :ensure t
-  :diminish "JS"
+  :interpreter "node"
   :init (progn
           (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
           ;; Autocomplete
