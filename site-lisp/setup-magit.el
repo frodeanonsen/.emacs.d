@@ -137,5 +137,10 @@
 
 (use-package git-timemachine :ensure t)
 
+(use-package magit-gitflow
+  :ensure t
+  :config (progn
+            (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)))
+
 (provide 'setup-magit)
 ;;; setup-magit.el ends here
