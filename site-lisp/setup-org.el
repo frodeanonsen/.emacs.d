@@ -45,6 +45,8 @@
                          "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
                         ("j" "Journal" entry (file+datetree (concat org-directory "/diary.org"))
                          "* %?\n%U\n" :clock-in t :clock-resume t)
+                        ("l" "Reading list" entry (file+datetree (concat org-directory "/reading.org"))
+                         "* %?\n%U\n" :clock-in t :clock-resume t)
                         ("w" "org-protocol" entry (file (concat org-directory "/refile.org"))
                          "* TODO Review %c\n%U\n" :immediate-finish t)
                         ("m" "Meeting" entry (file (concat org-directory "/refile.org"))
