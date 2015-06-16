@@ -13,6 +13,14 @@
 ;; Make backups of files, even when they're in version control
 (setq vc-make-backup-files t)
 
+;; Write auto-save files to own directory
+(setq auto-save-file-name-transforms
+      `((".*" ,(expand-file-name
+                (concat user-emacs-directory "auto-save")) t)))
+
+;; Disable lockfiles
+(setq create-lockfiles nil)
+
 ;; Save point position between sessions
 (require 'saveplace)
 (setq-default save-place t)
