@@ -19,6 +19,7 @@
           (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
           (setq web-mode-engines-alist
                 '(("php"    . "\\.phtml\\'")))
@@ -27,9 +28,15 @@
                   ("html" . (ac-source-words-in-buffer ac-source-abbrev)))))
   :config (progn
             (setq web-mode-markup-indent-offset 2)
+            (setq web-mode-code-indent-offset 2)
             (setq web-mode-snippets nil)
             (define-key web-mode-map (kbd "C-c C-s") nil)
-            (define-key web-mode-map (kbd "C-c C-d C-d") 'ng-snip-show-docs-at-point)))
+            (define-key web-mode-map (kbd "C-c C-d C-d") 'ng-snip-show-docs-at-point)
+
+            ;; React
+            (flycheck-add-mode 'javascript-eslint 'web-mode)
+            (sp-local-pair 'web-mode "<" ">")
+            ))
 
 (use-package zencoding-mode
   :ensure t
