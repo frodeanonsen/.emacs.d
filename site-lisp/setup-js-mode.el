@@ -69,7 +69,10 @@
             ;; 2 spaces for indent
             (setq-default js2-basic-offset 2)
             (setq-default json-reformat:indent-width 2)
-            (setq js-indent-level 2)
+            (setq-default js-indent-level 2)
+            (setq-default js2-auto-indent-p t)
+            (setq-default js2-enter-indents-newline nil)
+            (setq-default js2-indent-on-enter-key nil)
 
             ;; React
             (require 'js2-imenu-extras)
@@ -78,6 +81,7 @@
             ;;'(sp-local-pair 'js2-mode "<" ">")
 
             ;; Rules
+            (setq-default js2-show-parse-errors nil)
             (setq-default js2-strict-trailing-comma-warning nil)
             (setq-default js2-strict-missing-semi-warning nil)
             (setq-default js2-missing-semi-one-line-override t)))
