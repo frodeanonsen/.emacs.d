@@ -85,19 +85,7 @@
 
 (require 'setup-editor)
 (use-package lorem-ipsum :ensure t)
-
-(use-package flycheck
-  :ensure t
-  :init (add-hook 'after-init-hook #'global-flycheck-mode)
-  :config (progn
-            (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
-            ;; disable jshint since we prefer eslint checking
-            (setq-default flycheck-disabled-checkers
-                          (append flycheck-disabled-checkers
-                                  '(javascript-jshint)))))
-
-(use-package flycheck-pos-tip :ensure t)
-
+(require 'setup-flycheck)
 (require 'setup-snippets)
 
 (use-package ace-isearch
