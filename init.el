@@ -5,6 +5,9 @@
 ;;;
 ;;; Code:
 
+;; Load secrets
+(load "~/.emacs.secrets" t)
+
 ;; Set path to dependencies
 (defvar site-lisp-dir
   (expand-file-name "site-lisp" user-emacs-directory))
@@ -52,7 +55,7 @@
   :config (powerline-default-theme))
 (use-package paradox
   :ensure t
-  :config (setq paradox-github-token "11596867642e094c02000f45e53e685ac6d6e154"))
+  :config (setq paradox-github-token my-paradox-github-token))
 
 ;; Language specific setup files
 (require 'setup-clojure-mode)
