@@ -65,12 +65,12 @@ If no START and END is provided, the current region-beginning and
 region-end is used."
   (interactive "p")
   (save-excursion
-   (let* ((start (or start (region-beginning)))
-          (end (or end (region-end)))
-          (region (buffer-substring start end)))
-     (goto-char end)
-     (dotimes (i num)
-       (insert region)))))
+    (let* ((start (or start (region-beginning)))
+           (end (or end (region-end)))
+           (region (buffer-substring start end)))
+      (goto-char end)
+      (dotimes (i num)
+        (insert region)))))
 
 (defun duplicate-current-line (&optional num)
   "Duplicate the current line NUM times."
