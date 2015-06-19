@@ -44,7 +44,7 @@
           (add-hook 'sgml-mode-hook 'zencoding-mode)
           (add-hook 'web-mode-hook 'zencoding-mode))
   :config (progn
-            (define-key zencoding-mode-keymap (kbd "C-j") 'zencoding-expand-line)
+            (define-key zencoding-mode-keymap (kbd "<backtab>") 'zencoding-expand-line)
             (define-key zencoding-mode-keymap (kbd "<C-return>") nil)))
 
 (provide 'setup-web-mode)
