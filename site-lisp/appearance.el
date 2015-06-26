@@ -13,6 +13,14 @@
 ;; Highlight current line
 (global-hl-line-mode 1)
 
+(use-package ample-theme
+  :init (progn (load-theme 'ample t t)
+               (load-theme 'ample-flat t t)
+               (load-theme 'ample-light t t)
+               (enable-theme 'ample-flat))
+  :defer t
+  :ensure t)
+
 ;; Set custom theme path
 (setq custom-theme-directory (concat user-emacs-directory "themes"))
 
@@ -31,17 +39,12 @@
 (defun use-presentation-theme ()
   (setq current-theme "prez")
   (interactive)
-  (disable-theme 'ample-zen)
-  (load-theme 'prez t)
-  (when (boundp 'magnars/presentation-font)
-    (set-face-attribute 'default nil :font frode/presentation-font)))
+  (enable-theme 'ample-light))
 
 (defun use-default-theme ()
   (setq current-theme "default")
   (interactive)
-  (disable-theme 'prez)
-  (load-theme 'ample-zen t)
-  ;;(load-theme 'org-beautify t)
+  (enable-theme 'ample-flat)  
   (when (boundp 'frode/default-font)
     (set-face-attribute 'default nil :font frode/default-font)))
 
