@@ -4,6 +4,7 @@
 ;;; Set up themes. Runs BEFORE package-setup.el, so cannot use-packacge
 ;;;
 ;;; Code:
+(require 'use-package)
 
 (setq visible-bell t
       font-lock-maximum-decoration t
@@ -16,8 +17,11 @@
 (use-package ample-theme
   :init (progn (load-theme 'ample t t)
                (load-theme 'ample-flat t t)
-               (load-theme 'ample-light t t)
                (enable-theme 'ample-flat))
+  :defer t
+  :ensure t)
+
+(use-package color-theme-sanityinc-tomorrow
   :defer t
   :ensure t)
 
@@ -38,13 +42,26 @@
 ;; Default theme
 (defun use-presentation-theme ()
   (setq current-theme "prez")
-  (interactive)
-  (enable-theme 'ample-light))
+  (interactive)  
+  (load-theme 'sanityinc-tomorrow-day t)
+  (set-face-background hl-line-face "#eeeeee")
+
+  ;; Customize Smartparens pair-match highlight color
+  (custom-set-faces
+   '(sp-show-pair-match-face ((t (:background "light red")))))
+
+  (when (boundp 'frode/default-font)
+    (set-face-attribute 'default nil :font frode/default-font)))
 
 (defun use-default-theme ()
   (setq current-theme "default")
   (interactive)
-  (enable-theme 'ample-flat)  
+  (enable-theme 'ample-flat)
+
+  ;; Customize Smartparens pair-match highlight color
+  (custom-set-faces
+   '(sp-show-pair-match-face ((t (:background "dark red")))))
+
   (when (boundp 'frode/default-font)
     (set-face-attribute 'default nil :font frode/default-font)))
 
@@ -57,10 +74,6 @@
 (global-set-key (kbd "C-<f9>") 'toggle-presentation-mode)
 
 (use-default-theme)
-
-;; Customize Smartparens pair-match highlight color
-(custom-set-faces
- '(sp-show-pair-match-face ((t (:background "dark red")))))
 
 ;; Don't defer screen updates when performing operations
 (setq redisplay-dont-pause t)

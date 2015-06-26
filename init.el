@@ -16,9 +16,9 @@
 (add-to-list 'load-path site-lisp-dir)
 
 (require 'setup-gui)
-(require 'appearance)
 (require 'setup-emacs)
 (require 'setup-package)
+(require 'appearance)
 (require 'use-package)
 (use-package s :ensure t)
 (use-package dash :ensure t)
