@@ -14,10 +14,15 @@
 ;; Highlight current line
 (global-hl-line-mode 1)
 
-(use-package ample-theme
-  :init (progn (load-theme 'ample t t)
-               (load-theme 'ample-flat t t)
-               (enable-theme 'ample-flat))
+;; (use-package ample-theme
+;;   :init (progn (load-theme 'ample t t)
+;;                (load-theme 'ample-flat t t)
+;;                (enable-theme 'ample-flat))
+;;   :defer t
+;;   :ensure t)
+
+(use-package ample-zen-theme
+  :init (load-theme 'ample-zen t)
   :defer t
   :ensure t)
 
@@ -56,7 +61,7 @@
 (defun use-default-theme ()
   (setq current-theme "default")
   (interactive)
-  (enable-theme 'ample-flat)
+  (enable-theme 'ample-zen)
 
   ;; Customize Smartparens pair-match highlight color
   (custom-set-faces
