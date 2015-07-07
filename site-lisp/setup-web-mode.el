@@ -38,14 +38,13 @@
             (sp-local-pair 'web-mode "<" ">")
             ))
 
-(use-package zencoding-mode
-  :ensure t
+(use-package emmet-mode :ensure t
   :init (progn
-          (add-hook 'sgml-mode-hook 'zencoding-mode)
-          (add-hook 'web-mode-hook 'zencoding-mode))
-  :config (progn
-            (define-key zencoding-mode-keymap (kbd "<backtab>") 'zencoding-expand-line)
-            (define-key zencoding-mode-keymap (kbd "<C-return>") nil)))
+          (add-hook 'web-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+          (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+          ))
+
+(use-package helm-emmet :ensure t)
 
 (provide 'setup-web-mode)
 ;;; setup-web-mode.el ends here
