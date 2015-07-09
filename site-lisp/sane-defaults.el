@@ -6,6 +6,11 @@
 ;;; Code:
 (require 'use-package)
 
+;; Mouse scrolling
+(setq mouse-wheel-scroll-amount '(0.01))
+(setq mouse-wheel-progressive-speed nil)
+(setq ring-bell-function 'ignore)
+
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)
 
