@@ -40,6 +40,12 @@
   :ensure t
   :config (exec-path-from-shell-initialize))
 
+;; Tool to launch OSX finder
+(use-package reveal-in-osx-finder
+  :if is-mac
+  :ensure t
+  :config (global-set-key (kbd "C-c z") 'reveal-in-osx-finder))
+
 ;; Setup extensions
 (use-package diminish :ensure t)
 (require 'setup-magit)
