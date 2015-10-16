@@ -147,7 +147,7 @@
 
 (use-package clojure-mode-extra-font-locking :ensure t)
 
-(use-package clojure-cheatsheet :ensure t)
+;;(use-package clojure-cheatsheet :ensure t)
 
 (provide 'setup-clojure-mode)
 ;;; setup-clojure-mode.el ends here
