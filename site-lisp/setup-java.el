@@ -6,17 +6,21 @@
 ;;; Code:
 (require 'use-package)
 
-(require 'eclimd)
-(require 'ac-emacs-eclim-source)
-
 (use-package emacs-eclim
   :ensure t
   :config (progn
             (global-eclim-mode)
+            (ac-emacs-eclim-config)
             (custom-set-variables
-             '(eclim-eclipse-dirs '("~/apps/eclipse"))
-             '(eclim-executable "~/apps/eclipse/eclim"))
-            (ac-emacs-eclim-config)))
+             '(eclim-eclipse-dirs '("/Applications/Eclipse.app/Contents/Eclipse"))
+             '(eclim-executable "/Applications/Eclipse.app/Contents/Eclipse/eclim"))
+            (setq java-basic-offset 2
+                  tab-width 2
+                  indent-tabs-mode nil)))
+
+(require 'eclim)
+(require 'eclimd)
+(require 'ac-emacs-eclim-source)
 
 (provide 'setup-java)
 ;;; setup-java.el ends here
