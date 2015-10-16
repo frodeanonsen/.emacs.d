@@ -73,10 +73,6 @@
 ;; (eval-after-load "flyspell"
 ;;   '(define-key flyspell-mode-map (kbd "C-.") nil))
 
-(use-package git-commit-mode
-  :ensure t
-  :config (bind-key "C-c C-k" 'magit-exit-commit-mode git-commit-mode-map))
-
 (use-package magit  
   :ensure t
   :init (progn
@@ -98,7 +94,6 @@
             (add-hook 'magit-mode-hook 'magit-load-config-extensions)
 
             ;; Subtler highlight
-            (set-face-background 'magit-item-highlight "#121212")
             (set-face-background 'diff-file-header "#121212")
             (set-face-foreground 'diff-context "#666666")
             (set-face-foreground 'diff-added "#00cc33")
