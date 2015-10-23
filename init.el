@@ -19,7 +19,12 @@
 (require 'setup-emacs)
 (require 'setup-package)
 (require 'appearance)
-(require 'use-package)
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
+
 (use-package s :ensure t)
 (use-package dash :ensure t)
 (require 'os-detection)
