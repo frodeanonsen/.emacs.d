@@ -75,8 +75,8 @@
                          "* %? :note:\n%U\n")
                         ("j" "Journal" entry (file+datetree (concat org-directory "/diary.org"))
                          "* %?\n%U\n" :clock-in t :clock-resume t)
-                        ("l" "Reading list" entry (file+datetree (concat org-directory "/reading.org"))
-                         "* TODO %?\n%U\n" :clock-in t :clock-resume t)
+                        ("l" "Reading list" entry (file (concat org-directory "/reading.org"))
+                         "* TODO %?\n%U\n")
                         ("w" "org-protocol" entry (file (concat org-directory "/refile.org"))
                          "* TODO Review %c\n%U\n" :immediate-finish t)
                         ("m" "Meeting" entry (file (concat org-directory "/refile.org"))
@@ -101,6 +101,15 @@
           ;; Custom agenda command definitions
           (setq org-agenda-custom-commands
                 (quote (
+                        ("h" . "Home tasks...")
+                        ("hh" "NEXT @home"
+                         tags-todo "TODO=\"NEXT\"&@home|@sandnes"
+                         ((org-agenda-overriding-header "Next @home tasks")
+                          (org-tags-match-list-sublevels 9)))
+                        ("ho" "NEXT @out"
+                         tags-todo "TODO=\"NEXT\"&@out"
+                         ((org-agenda-overriding-header "Next @out tasks")
+                          (org-tags-match-list-sublevels 9)))
                         ("w" . "Work tasks...")
                         ("wn" "NEXT Knowit"
                          tags-todo "TODO=\"NEXT\"&knowit"
@@ -110,13 +119,13 @@
                          tags-todo "TODO=\"NEXT\"&kydonia"
                          ((org-agenda-overriding-header "Next Kydonia tasks")
                           (org-tags-match-list-sublevels 9)))
+                        ("r" "Reading list"
+                         tags-todo "TODO<>\"DONE\"&@reading"
+                         ((org-agenda-overriding-header "Next on the reading list")
+                          (org-tags-match-list-sublevels 9)))
                         ("N" "Notes" tags "note"
                          ((org-agenda-overriding-header "Notes")
                           (org-tags-match-list-sublevels t)))
-                        ("h" "Habits" tags-todo "STYLE=\"habit\""
-                         ((org-agenda-overriding-header "Habits")
-                          (org-agenda-sorting-strategy
-                           '(todo-state-down effort-up category-keep))))
                         (" " "Agenda"
                          ((agenda "" nil)
                           (tags "REFILE"
