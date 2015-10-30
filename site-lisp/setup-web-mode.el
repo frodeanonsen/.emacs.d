@@ -35,7 +35,7 @@
 
             ;; React
             (flycheck-add-mode 'javascript-eslint 'web-mode)
-            (sp-local-pair 'web-mode "<" ">")
+            ;;(sp-local-pair 'web-mode "<" ">")
             ))
 
 (use-package emmet-mode :ensure t

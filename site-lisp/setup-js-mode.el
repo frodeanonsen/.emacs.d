@@ -45,7 +45,14 @@
 ;;   (modify-syntax-entry ?< "(>")
 ;;   (modify-syntax-entry ?> ")<"))
 
-(use-package js2-mode  
+(use-package js2-refactor
+  :ensure t
+  :init (progn
+          (add-hook 'js2-mode-hook #'js2-refactor-mode))
+  :config (progn
+            (js2r-add-keybindings-with-prefix "s-r")))
+
+(use-package js2-mode
   :ensure t
   :interpreter "node"
   :init (progn
@@ -61,9 +68,10 @@
           ;; (setq ac-js2-evaluate-calls t)
           (add-hook 'js2-mode-hook 'tern-mode)
           (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
-          )
+          (bind-key "M-j" nil)
+          (bind-key "s-<left>" 'js2r-forward-barf js2-mode-map)
+          (bind-key "s-<right>" 'js2r-forward-slurp js2-mode-map))
   :config (progn
-            (define-key js2-mode-map (kbd "M-j") nil)
             (setq-default js2-global-externs '("Buffer" "history" "process" "module" "exports" "require" "jQuery" "$" "_" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON" "describe" "it" "expect" "before" "after"))
 
             ;; 2 spaces for indent
@@ -85,10 +93,6 @@
             (setq-default js2-strict-trailing-comma-warning nil)
             (setq-default js2-strict-missing-semi-warning nil)
             (setq-default js2-missing-semi-one-line-override t)))
-
-(use-package js2-refactor
-  :ensure t
-  :config (js2r-add-keybindings-with-prefix "C-c C-m"))
 
 ;; ef is extract-function: Extracts the marked expressions out into a new named function.
 ;; em is extract-method: Extracts the marked expressions out into a new named method in an object literal.

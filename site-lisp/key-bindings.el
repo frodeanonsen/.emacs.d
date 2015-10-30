@@ -197,10 +197,10 @@
 (global-set-key (kbd "C-c b") 'create-scratch-buffer)
 
 ;; Move windows, even in org-mode
-(global-set-key (kbd "<s-right>") 'windmove-right)
-(global-set-key (kbd "<s-left>") 'windmove-left)
-(global-set-key (kbd "<s-up>") 'windmove-up)
-(global-set-key (kbd "<s-down>") 'windmove-down)
+;; (global-set-key (kbd "<s-right>") 'windmove-right)
+;; (global-set-key (kbd "<s-left>") 'windmove-left)
+;; (global-set-key (kbd "<s-up>") 'windmove-up)
+;; (global-set-key (kbd "<s-down>") 'windmove-down)
 
 ;; Magit
 (global-set-key (kbd "C-x m") 'magit-status)
