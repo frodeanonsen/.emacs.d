@@ -27,6 +27,10 @@
          ("C-c b" . org-iswitchb)
          ("C-c c" . org-capture))
   :init (progn
+          (org-babel-do-load-languages
+           'org-babel-load-languages
+           '((emacs-lisp . t)
+             (js . t)))
           (setq org-directory "~/git/gtd")
           (setq org-default-notes-file (concat org-directory "/refile.org"))
           (setq org-agenda-files (quote ("~/git/gtd")))
@@ -192,6 +196,28 @@
                          nil)))
                 )
           ))
+
+(defun my-epresent-tweaks ()
+  (setq cursor-type nil)
+  (org-display-inline-images nil 'refresh)
+  (set-background-color "#000000")
+  (modify-face 'org-level-1 "#FFFFFF")
+  (modify-face 'org-level-2 "#FFFFFF")
+  (modify-face 'org-quote "#66D9EF" "#222222")
+  (modify-face 'org-block "#75715E" "#222222")
+  (modify-face 'org-code "#66D9EF" "#222222")
+  (set-fringe-style 0))
+
+(defun turn-on-fringe-mode ()
+  (set-fringe-style nil))
+
+(use-package epresent
+  :ensure t
+  :bind (("<f10>" . epresent-quit)
+         ("<f12>" . epresent-run))
+  :config (progn
+            (add-hook 'epresent-start-presentation-hook #'my-epresent-tweaks)
+            (add-hook 'epresent-stop-presentation-hook #'turn-on-fringe-mode)))
 
 (provide 'setup-org)
 ;;; setup-org.el ends here
