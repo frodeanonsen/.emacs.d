@@ -159,12 +159,12 @@
 (global-set-key (kbd "C-<tab>") 'completion-at-point)
 
 ;; Like isearch, but adds region (if any) to history and deactivates mark
-;; (global-set-key (kbd "C-s") 'isearch-forward-use-region)
-;; (global-set-key (kbd "C-r") 'isearch-backward-use-region)
+(global-set-key (kbd "C-s") 'isearch-forward-use-region)
+(global-set-key (kbd "C-r") 'isearch-backward-use-region)
 
 ;; Like isearch-*-use-region, but doesn't fuck with the active region
-;; (global-set-key (kbd "C-S-s") 'isearch-forward)
-;; (global-set-key (kbd "C-S-r") 'isearch-backward)
+(global-set-key (kbd "C-S-s") 'isearch-forward)
+(global-set-key (kbd "C-S-r") 'isearch-backward)
 
 ;; Move more quickly
 (global-set-key (kbd "C-S-n") (λ (ignore-errors (next-line 5))))
@@ -268,8 +268,8 @@
 (define-key occur-mode-map (kbd "p") 'previous-line)
 
 ;; Font size
-(define-key global-map (kbd "M-s +") 'zoom-in)
-(define-key global-map (kbd "M-s -") 'zoom-out)
+(define-key global-map (kbd "M-s-+") 'zoom-in)
+(define-key global-map (kbd "M-s--") 'zoom-out)
 
 ;; Frames
 (define-key global-map (kbd "M-S-<right>") 'other-frame)
@@ -284,6 +284,11 @@
 ;; Page up / down
 (global-set-key (kbd "<prior>") 'scroll-down)
 (global-set-key (kbd "<next>") 'scroll-up)
+
+(global-set-key (kbd "C-S-z") 'undo)
+(global-unset-key (kbd "M-S-z"))
+(global-set-key (kbd "M-S-z") 'redo)
+
 
 (provide 'key-bindings)
 ;;; key-bindings.el ends here
