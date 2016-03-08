@@ -73,6 +73,8 @@
 ;; (eval-after-load "flyspell"
 ;;   '(define-key flyspell-mode-map (kbd "C-.") nil))
 
+(use-package magit-gh-pulls :ensure t)
+
 (use-package magit  
   :ensure t
   :init (progn
@@ -92,6 +94,7 @@
             ;;     git config --add magit.extension svn
             ;;
             (add-hook 'magit-mode-hook 'magit-load-config-extensions)
+            (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
 
             ;; Subtler highlight
             (set-face-background 'diff-file-header "#121212")
