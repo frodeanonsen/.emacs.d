@@ -14,29 +14,10 @@
 ;; Highlight current line
 (global-hl-line-mode 1)
 
-;; (use-package ample-theme
-;;   :init (progn (load-theme 'ample t t)
-;;                (load-theme 'ample-flat t t)
-;;                (enable-theme 'ample-flat))
-;;   :defer t
-;;   :ensure t)
-
-(use-package ample-zen-theme
-  :init (load-theme 'ample-zen t)
+(use-package material-theme
+  :init (load-theme 'material t)
   :defer t
   :ensure t)
-
-(use-package color-theme-sanityinc-tomorrow
-  :defer t
-  :ensure t)
-
-;; Set custom theme path
-(setq custom-theme-directory (concat user-emacs-directory "themes"))
-
-(dolist
-    (path (directory-files custom-theme-directory t "\\w+"))
-  (when (file-directory-p path)
-    (add-to-list 'custom-theme-load-path path)))
 
 ;; mac friendly font
 (when window-system
@@ -48,8 +29,7 @@
 (defun use-presentation-theme ()
   (setq current-theme "prez")
   (interactive)  
-  (load-theme 'sanityinc-tomorrow-day t)
-  (set-face-background hl-line-face "#eeeeee")
+  (load-theme 'material-light t)
 
   ;; Customize Smartparens pair-match highlight color
   (custom-set-faces
@@ -61,7 +41,7 @@
 (defun use-default-theme ()
   (setq current-theme "default")
   (interactive)
-  (enable-theme 'ample-zen)
+  (enable-theme 'material)
 
   ;; Customize Smartparens pair-match highlight color
   (custom-set-faces
