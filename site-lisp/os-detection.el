@@ -5,6 +5,8 @@
 ;;;
 ;;; Code:
 
+(message "Detecting OS: %s" system-type)
+
 (setq is-mac (equal system-type 'darwin))
 (setq is-win (equal system-type 'windows-nt))
 

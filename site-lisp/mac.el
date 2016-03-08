@@ -1,5 +1,7 @@
 (require 'dash)
 
+(message "Applying Mac settings")
+
 ;; change command to meta, and ignore option to use weird Norwegian keyboard
 (setq mac-option-modifier 'super)
 (setq mac-command-modifier 'meta)

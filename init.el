@@ -27,7 +27,13 @@
 
 (use-package s :ensure t)
 (use-package dash :ensure t)
-(require 'os-detection)
+(message "pre os detect")
+;;(require 'os-detection)
+(setq is-mac 't)
+(setq is-win nil)
+
+(require 'mac)
+(message "post os detect")
 (use-package zoom-frm :ensure t)
 (use-package expand-region :ensure t)
 (use-package rainbow-delimiters
@@ -103,9 +109,9 @@
 (require 'setup-flycheck)
 (require 'setup-snippets)
 
-(use-package ace-isearch
-  :ensure t
-  :config (global-ace-isearch-mode +1))
+;; (use-package ace-isearch
+;;   :ensure t
+;;   :config (global-ace-isearch-mode +1))
 
 ;; Setup key bindings and helm - last, to override stuff
 (require 'key-bindings)
