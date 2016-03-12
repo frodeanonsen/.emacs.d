@@ -1,7 +1,7 @@
 ;;; appearance.el --- appearance
 ;;;
 ;;; Commentary:
-;;; Set up themes. Runs BEFORE package-setup.el, so cannot use-packacge
+;;; Set up themes
 ;;;
 ;;; Code:
 (require 'use-package)
@@ -29,26 +29,12 @@
 (defun use-presentation-theme ()
   (setq current-theme "prez")
   (interactive)  
-  (load-theme 'material-light t)
-
-  ;; Customize Smartparens pair-match highlight color
-  (custom-set-faces
-   '(sp-show-pair-match-face ((t (:background "light red")))))
-
-  (when (boundp 'frode/default-font)
-    (set-face-attribute 'default nil :font frode/default-font)))
+  (load-theme 'material-light t))
 
 (defun use-default-theme ()
   (setq current-theme "default")
   (interactive)
-  (enable-theme 'material)
-
-  ;; Customize Smartparens pair-match highlight color
-  (custom-set-faces
-   '(sp-show-pair-match-face ((t (:background "dark red")))))
-
-  (when (boundp 'frode/default-font)
-    (set-face-attribute 'default nil :font frode/default-font)))
+  (enable-theme 'material))
 
 (defun toggle-presentation-mode ()
   (interactive)
